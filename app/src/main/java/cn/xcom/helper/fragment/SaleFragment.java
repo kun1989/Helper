@@ -12,11 +12,18 @@ import cn.xcom.helper.R;
 /**
  * Created by zhuchongkun on 16/5/27.
  * 主页面——特卖
+ *
  */
-public class SaleFragment extends Fragment{
+public class SaleFragment extends Fragment implements View.OnClickListener{
+
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         return inflater.inflate(R.layout.fragment_sale,container,false);
+    }
+
+    @Override
+    public void onClick(View v) {
+
     }
 }
