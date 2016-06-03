@@ -22,6 +22,8 @@
         <activity android:name=".activity.RegisterActivity"/>
         <activity android:name=".activity.HomeActivity"/>
         <activity android:name=".activity.ResetPasswordActivity"/>
+        <activity android:name=".activity.AuthorizedActivity"/>
+        <activity android:name=".activity.SkillListActivity"/>
     </application>
 
 </manifest>

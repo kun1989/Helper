@@ -10,7 +10,7 @@
     <string name="tv_login_register">立即注册</string>
     <string name="tv_login_forget_password">忘记密码？</string>
     <string name="bt_login">登录</string>
-    <!---->
+    <!--RegisterActivity-->
     <string name="tv_register_title">注册帐号</string>
     <string name="rb_register_man">男</string>
     <string name="rb_register_woman">女</string>
@@ -30,7 +30,7 @@
     <string name="tv_register_password">密码</string>
     <string name="tv_register_password_hint">请输入密码</string>
     <string name="tv_register_verification_obtain">获取验证码</string>
-    <!---->
+    <!--ResetActivity-->
     <string name="tv_reset_password_title">修改密码</string>
     <string name="tv_reset_password_country_code">+86</string>
     <string name="et_reset_password_phone_hint">请输入手机号</string>
@@ -42,16 +42,22 @@
     <string name="tv_reset_password_password_confirm">确认密码</string>
     <string name="et_reset_password_password_confirm_hint">请确认密码</string>
     <string name="bt_reset_password_submit">完成</string>
-    <!---->
+    <!--HomeActivity-->
     <string name="bt_home_map">主页</string>
     <string name="bt_home_buy">抢单</string>
     <string name="bt_home_sale">特卖</string>
     <string name="bt_home_me">我的</string>
-
     <!---->
+    <string name="tv_fragment_map_title">51帮</string>
+    <string name="tv_fragment_map_I_help">我帮...</string>
+    <string name="tv_fragment_map_help_me">帮我...</string>
+    <string name="tv_fragment_map_city_interaction">同城互动</string>
+    <!--BuyFragment-->
     <string name="tv_fragment_buy_title">抢单</string>
     <string name="bt_fragment_buy_authorized">立即认证</string>
-    <!---->
+    <!--SaleFragment-->
+    <string name="tv_fragment_sale_title">特卖</string>
+    <!--MeFragment-->
     <string name="tv_fragment_me_name">用户名称</string>
     <string name="tv_fragment_me_phone">17312345678</string>
     <string name="tv_fragment_me_real_name">实名认证</string>
@@ -71,4 +77,30 @@
     <string name="tv_fragment_me_insure">我要投保</string>
     <string name="tv_fragment_me_customer_service_consulting">客服咨询</string>
     <string name="tv_fragment_me_more_service">更多服务</string>
+    <!--AuthorizedActivity-->
+    <string name="tv_authorized_title">身份认证</string>
+    <string name="tv_authorized_city">所在城市</string>
+    <string name="tv_authorized_city_hint">所在城市</string>
+    <string name="tv_authorized_name">真实姓名</string>
+    <string name="et_authorized_name_hint">本人真实姓名</string>
+    <string name="tv_authorized_ID">身份证号</string>
+    <string name="et_authorized_ID_hint">身份证</string>
+    <string name="tv_authorized_emergency_contact_person_name">紧急联络人</string>
+    <string name="et_authorized_emergency_contact_person_name_hint">紧急联络人的真实姓名</string>
+    <string name="tv_authorized_emergency_contact_person_phone">联络人手机</string>
+    <string name="et_authorized_emergency_contact_person_phone_hint">联络人手机</string>
+    <string name="tv_authorized_note">＊手持身份证正面照，靠近镜头正面拍摄胸部以上,保证身份证上文字清晰可见</string>
+    <string name="bt_authorized_next">下一步</string>
+    <!--SkillListActivity-->
+    <string name="tv_skill_list_title">技能选择</string>
+    <string name="tv_skill_list_run_errands">跑腿</string>
+    <string name="tv_skill_list_vehicle">车辆</string>
+    <string name="tv_skill_list_repair">维修</string>
+    <string name="tv_skill_list_housekeeping">家政</string>
+    <string name="tv_skill_list_agency">代办</string>
+    <string name="tv_skill_list_pet">宠物</string>
+    <string name="tv_skill_list_part_time_job">兼职</string>
+    <string name="tv_skill_list_marriage_love">婚恋</string>
+    <string name="bt_skill_list_submit">立即提交</string>
+
 </resources>
