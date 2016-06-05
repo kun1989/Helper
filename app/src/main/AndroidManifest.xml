@@ -24,6 +24,13 @@
         <activity android:name=".activity.ResetPasswordActivity"/>
         <activity android:name=".activity.AuthorizedActivity"/>
         <activity android:name=".activity.SkillListActivity"/>
+        <activity android:name=".activity.HelpMeActivity"/>
+        <activity android:name=".activity.UploadContractActivity"/>
+        <activity android:name=".activity.IHelpActivity"/>
+        <activity android:name=".activity.SelectCityActivity"/>
+        <activity android:name=".activity.PaymentActivity"/>
+        <activity android:name=".activity.LocationActivity"/>
+
     </application>
 
 </manifest>

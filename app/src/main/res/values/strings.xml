@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Helper</string>
+    <string name="app_name">51帮</string>
     <!--LoginActivity-->
     <string name="tv_login_title">51帮</string>
     <string name="tv_login_areaCode">＋86</string>
@@ -47,7 +47,7 @@
     <string name="bt_home_buy">抢单</string>
     <string name="bt_home_sale">特卖</string>
     <string name="bt_home_me">我的</string>
-    <!---->
+    <!--MapFragment-->
     <string name="tv_fragment_map_title">51帮</string>
     <string name="tv_fragment_map_I_help">我帮...</string>
     <string name="tv_fragment_map_help_me">帮我...</string>
@@ -77,6 +77,36 @@
     <string name="tv_fragment_me_insure">我要投保</string>
     <string name="tv_fragment_me_customer_service_consulting">客服咨询</string>
     <string name="tv_fragment_me_more_service">更多服务</string>
+    <!--HelpMeActivity-->
+    <string name="tv_help_me_title">帮我</string>
+    <string name="et_help_me_content_hint">各种您想找人做的事情都可以发布哦～只要您一声招呼，我就帮您办事！</string>
+    <string name="tv_help_me_phone">联系电话</string>
+    <string name="et_help_me_phone_hint">请输入联系电话</string>
+    <string name="tv_help_me_site_location">上门地点</string>
+    <string name="et_help_me_site_location_hint">北京市朝阳区</string>
+    <string name="tv_help_me_service_location">服务地点</string>
+    <string name="et_help_me_service_location_hint">北京市朝阳区</string>
+    <string name="tv_help_me_wages">工资</string>
+    <string name="et_help_me_wages_hint">请输入工资</string>
+    <string name="tv_help_me_time_unit">按小时</string>
+    <string name="tv_help_me_validity_period">有效期</string>
+    <string name="et_help_me_validity_period_hint">请选择有效时间</string>
+    <string name="tv_help_me_service_charge">服务费¥26</string>
+    <string name="bt_help_me_submit">提交订单</string>
+    <!--UploadContractActivity-->
+    <string name="tv_upload_contract_title">合同上传</string>
+    <string name="bt_upload_contract_skip">跳转</string>
+    <string name="bt_upload_contract_upload">上传</string>
+    <!--PaymentActivity-->
+    <string name="tv_payment_title">订单支付</string>
+    <string name="tv_payment_escrow_amount">托管金额</string>
+    <string name="tv_payment_escrow_amount_hint">¥26.00</string>
+    <string name="tv_payment_weixin">微信支付</string>
+    <string name="tv_payment_zhifubao">支付宝支付</string>
+    <string name="tv_payment_yinhangka">银行卡支付</string>
+    <string name="tv_payment_agree">我同意《51帮托管协议》</string>
+    <string name="bt_payment_submit">立即支付</string>
+
     <!--AuthorizedActivity-->
     <string name="tv_authorized_title">身份认证</string>
     <string name="tv_authorized_city">所在城市</string>

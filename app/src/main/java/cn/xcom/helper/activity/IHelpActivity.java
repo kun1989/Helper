@@ -8,16 +8,15 @@ import android.view.Window;
 import cn.xcom.helper.R;
 
 /**
- * Created by zhuchongkun on 16/6/3.
- * 身份认证页
+ * Created by zhuchongkun on 16/6/4.
+ * 我帮页
  */
-public class AuthorizedActivity extends BaseActivity implements View.OnClickListener{
-
+public class IHelpActivity extends BaseActivity implements View.OnClickListener {
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_authorized);
+        setContentView(R.layout.activity_i_help);
     }
 
     @Override

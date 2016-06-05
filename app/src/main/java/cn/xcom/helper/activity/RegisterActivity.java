@@ -26,7 +26,7 @@ import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by zhuchongkun on 16/5/27.
- * 注册
+ * 注册页
  */
 public class RegisterActivity extends BaseActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener{
     private String TAG="RegisterActivity";

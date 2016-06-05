@@ -13,4 +13,5 @@
     <color name="colorTextGray">#666666</color>
     <color name="colorTextRed">#ff4040</color>
     <color name="colorRealName">#038677</color>
+    <color name="colorUploadSkip">#FF9800</color>
 </resources>

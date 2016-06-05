@@ -6,6 +6,7 @@ import android.view.View;
 
 /**
  * Created by zhuchongkun on 16/6/3.
+ * 技能列表页
  */
 public class SkillListActivity extends BaseActivity implements View.OnClickListener {
     @Override

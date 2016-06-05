@@ -26,7 +26,7 @@ import cn.xcom.helper.utils.RegexUtil;
 import cz.msebera.android.httpclient.Header;
 
 /**
- * 登录
+ * 登录页
  */
 public class LoginActivity extends BaseActivity implements View.OnClickListener,TextWatcher{
     private String TAG="LoginActivity";

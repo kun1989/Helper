@@ -26,7 +26,7 @@ import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by zhuchongkun on 16/5/27.
- * 修改密码
+ * 修改密码页
  */
 public class ResetPasswordActivity extends BaseActivity implements View.OnClickListener{
     private String TAG="ResetPasswordActivity";

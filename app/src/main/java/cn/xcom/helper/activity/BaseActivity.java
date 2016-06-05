@@ -6,6 +6,7 @@ import android.support.v4.app.FragmentActivity;
 
 /**
  * Created by zhuchongkun on 16/5/27.
+ * 基础页
  */
 public class BaseActivity extends FragmentActivity{
     @Override
