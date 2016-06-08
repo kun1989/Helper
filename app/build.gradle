@@ -27,4 +27,5 @@ dependencies {
     compile 'org.greenrobot:eventbus:3.0.0'
     compile 'com.facebook.fresco:fresco:0.9.0+'
     compile 'com.facebook.fresco:imagepipeline-okhttp:0.9.0+'
+    compile 'com.jcodecraeer:xrecyclerview:1.2.7'
 }

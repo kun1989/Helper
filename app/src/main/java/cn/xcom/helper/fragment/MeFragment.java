@@ -1,6 +1,7 @@
 package cn.xcom.helper.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -12,6 +13,8 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import cn.xcom.helper.R;
+import cn.xcom.helper.activity.CouponActivity;
+import cn.xcom.helper.activity.MoreServiceActivity;
 
 /**
  * Created by zhuchongkun on 16/5/27.
@@ -95,7 +98,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 
                 break;
             case R.id.tv_fragment_me_coupon:
-
+                startActivity(new Intent(mContext, CouponActivity.class));
                 break;
             case R.id.tv_fragment_me_order:
 
@@ -119,7 +122,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
 
                 break;
             case R.id.tv_fragment_me_more_service:
-
+                startActivity(new Intent(mContext, MoreServiceActivity.class));
                 break;
         }
 

@@ -29,4 +29,9 @@
         </RelativeLayout>
     </RelativeLayout>
 
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/lv_coupon"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" />
+
 </LinearLayout>
