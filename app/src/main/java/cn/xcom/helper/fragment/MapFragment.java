@@ -1,6 +1,7 @@
 package cn.xcom.helper.fragment;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +12,8 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import cn.xcom.helper.R;
+import cn.xcom.helper.activity.HelpMeActivity;
+import cn.xcom.helper.activity.IHelpActivity;
 
 /**
  * Created by zhuchongkun on 16/5/27.
@@ -58,10 +61,10 @@ public class MapFragment extends Fragment implements View.OnClickListener{
 
                 break;
             case R.id.tv_fragment_map_I_help:
-
+                startActivity(new Intent(mContext, IHelpActivity.class));
                 break;
             case R.id.tv_fragment_map_help_me:
-
+                startActivity(new Intent(mContext, HelpMeActivity.class));
                 break;
             case R.id.tv_fragment_map_city_interaction:
 

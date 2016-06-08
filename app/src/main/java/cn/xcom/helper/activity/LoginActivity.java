@@ -57,7 +57,6 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
         tv_forget_password.setOnClickListener(this);
         tv_register= (TextView) findViewById(R.id.tv_login_register);
         tv_register.setOnClickListener(this);
-
     }
 
     @Override
@@ -93,10 +92,9 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             return;
         }
         RequestParams params=new RequestParams();
-        params.put("a","applogin");
         params.put("phone",phone);
         params.put("password",password);
-        HelperAsyncHttpClient.get(NetConstant.NET_HOST_PREFIX,params,new JsonHttpResponseHandler(){
+        HelperAsyncHttpClient.get(NetConstant.NET_LOGIN,params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);

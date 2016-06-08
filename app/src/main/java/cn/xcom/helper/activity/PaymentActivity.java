@@ -46,6 +46,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_payment_back:
+                finish();
                 break;
             case R.id.bt_payment_submit:
                 break;

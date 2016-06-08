@@ -23,7 +23,7 @@ import cn.xcom.helper.fragment.SaleFragment;
 public class HomeActivity extends BaseActivity{
     private Context mContext;
     private Button[] mTabs;
-    private TextView unReadInformation,unReadFind,unReadChat,unReadMe;
+    private TextView unReadMap, unReadBuy, unReadSale,unReadMe;
     private MapFragment mapFragment;
     private BuyFragment buyFragment;
     private SaleFragment saleFragment;
@@ -43,14 +43,14 @@ public class HomeActivity extends BaseActivity{
         initFragment();
     }
     private void initView(){
-        unReadInformation= (TextView) findViewById(R.id.tv_home_information_red);
-        unReadFind= (TextView) findViewById(R.id.tv_home_find_red);
-        unReadChat= (TextView) findViewById(R.id.tv_home_chat_red);
+        unReadMap = (TextView) findViewById(R.id.tv_home_map_red);
+        unReadBuy = (TextView) findViewById(R.id.tv_home_buy_red);
+        unReadSale = (TextView) findViewById(R.id.tv_home_sale_red);
         unReadMe= (TextView) findViewById(R.id.tv_home_me_red);
         mTabs=new Button[4];
-        mTabs[0]= (Button) findViewById(R.id.bt_home_information);
-        mTabs[1]= (Button) findViewById(R.id.bt_home_find);
-        mTabs[2]= (Button) findViewById(R.id.bt_home_chat);
+        mTabs[0]= (Button) findViewById(R.id.bt_home_map);
+        mTabs[1]= (Button) findViewById(R.id.bt_home_buy);
+        mTabs[2]= (Button) findViewById(R.id.bt_home_sale);
         mTabs[3]= (Button) findViewById(R.id.bt_home_me);
         mTabs[a].setSelected(true);
     }
@@ -99,13 +99,13 @@ public class HomeActivity extends BaseActivity{
     }
     public void onTabClicked(View view){
         switch (view.getId()){
-            case R.id.bt_home_information:
+            case R.id.bt_home_map:
                 index=0;
                 break;
-            case R.id.bt_home_find:
+            case R.id.bt_home_buy:
                 index=1;
                 break;
-            case R.id.bt_home_chat:
+            case R.id.bt_home_sale:
                 index=2;
                 break;
             case R.id.bt_home_me:

@@ -20,7 +20,7 @@
         android:orientation="horizontal">
 
         <RelativeLayout
-            android:id="@+id/rl_home_information"
+            android:id="@+id/rl_home_map"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1.0">
@@ -35,9 +35,9 @@
                 android:paddingTop="7dp"
                 android:text="@string/bt_home_map"
                 android:textSize="14sp"
-                android:id="@+id/bt_home_information" />
+                android:id="@+id/bt_home_map" />
             <TextView
-                android:id="@+id/tv_home_information_red"
+                android:id="@+id/tv_home_map_red"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_alignParentRight="true"
@@ -48,7 +48,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_home_find"
+            android:id="@+id/rl_home_buy"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1.0"
@@ -64,9 +64,9 @@
                 android:paddingTop="7dp"
                 android:textSize="14sp"
                 android:text="@string/bt_home_buy"
-                android:id="@+id/bt_home_find" />
+                android:id="@+id/bt_home_buy" />
             <TextView
-                android:id="@+id/tv_home_find_red"
+                android:id="@+id/tv_home_buy_red"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_alignParentRight="true"
@@ -77,7 +77,7 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:id="@+id/rl_home_chat"
+            android:id="@+id/rl_home_sale"
             android:layout_width="0dip"
             android:layout_height="match_parent"
             android:layout_weight="1.0">
@@ -92,11 +92,11 @@
                 android:paddingTop="7dp"
                 android:textSize="14sp"
                 android:text="@string/bt_home_sale"
-                android:id="@+id/bt_home_chat"
+                android:id="@+id/bt_home_sale"
                 android:layout_alignParentRight="true"
                 android:layout_alignParentEnd="true" />
             <TextView
-                android:id="@+id/tv_home_chat_red"
+                android:id="@+id/tv_home_sale_red"
                 android:layout_width="15dp"
                 android:layout_height="15dp"
                 android:layout_alignParentRight="true"

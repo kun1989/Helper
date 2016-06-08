@@ -14,11 +14,11 @@
     <string name="tv_register_title">注册帐号</string>
     <string name="rb_register_man">男</string>
     <string name="rb_register_woman">女</string>
-    <string name="tv_register_name">姓名</string>
+    <string name="tv_register_name">姓&#160;&#160;&#160;&#160;名</string>
     <string name="et_register_name_hint">请输入真实姓名</string>
     <string name="tv_register_ID">身份证</string>
     <string name="et_register_ID_hint">请输入身份证号</string>
-    <string name="tv_register_address">地址</string>
+    <string name="tv_register_address">地&#160;&#160;&#160;&#160;址</string>
     <string name="et_register_address_hint">请输入地址</string>
     <string name="bt_register_submit">注册</string>
     <string name="tv_register_country">国家和地区</string>
@@ -27,7 +27,7 @@
     <string name="tv_register_phone_hint">请输入手机号</string>
     <string name="tv_register_verification">验证码</string>
     <string name="tv_register_verification_hint">请输入验证码</string>
-    <string name="tv_register_password">密码</string>
+    <string name="tv_register_password">密&#160;&#160;&#160;&#160;码</string>
     <string name="tv_register_password_hint">请输入密码</string>
     <string name="tv_register_verification_obtain">获取验证码</string>
     <!--ResetActivity-->
@@ -93,6 +93,8 @@
     <string name="et_help_me_validity_period_hint">请选择有效时间</string>
     <string name="tv_help_me_service_charge">服务费¥26</string>
     <string name="bt_help_me_submit">提交订单</string>
+    <!--IhelpActivity-->
+    <string name="tv_i_help_title">我帮</string>
     <!--UploadContractActivity-->
     <string name="tv_upload_contract_title">合同上传</string>
     <string name="bt_upload_contract_skip">跳转</string>
@@ -106,7 +108,6 @@
     <string name="tv_payment_yinhangka">银行卡支付</string>
     <string name="tv_payment_agree">我同意《51帮托管协议》</string>
     <string name="bt_payment_submit">立即支付</string>
-
     <!--AuthorizedActivity-->
     <string name="tv_authorized_title">身份认证</string>
     <string name="tv_authorized_city">所在城市</string>
@@ -132,5 +133,17 @@
     <string name="tv_skill_list_part_time_job">兼职</string>
     <string name="tv_skill_list_marriage_love">婚恋</string>
     <string name="bt_skill_list_submit">立即提交</string>
+    <!--CouponActivity-->
+    <string name="tv_coupon_title">我的优惠券</string>
+
+    <!--MoreServiceActivity-->
+    <string name="tv_more_service_title">更多服务</string>
+    <string name="tv_more_service_training_course">培训教程</string>
+    <string name="tv_more_service_common_problem">常见问题</string>
+    <string name="tv_more_service_legal_agreement">法律协议</string>
+    <string name="tv_more_service_score">去评分</string>
+    <string name="tv_more_service_clear_cache">清除缓存</string>
+    <string name="tv_more_service_exit">退出登录</string>
+
 
 </resources>

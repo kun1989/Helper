@@ -62,7 +62,8 @@
             android:layout_width="60dip"
             android:padding="15dip"
             android:layout_height="match_parent"
-            android:src="@mipmap/ic_close_eyes"
+            android:src="@mipmap/ic_arrow_right"
+            android:scaleType="center"
             />
     </LinearLayout>
     <View

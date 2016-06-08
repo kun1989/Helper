@@ -10,24 +10,24 @@ import android.widget.RelativeLayout;
 import cn.xcom.helper.R;
 
 /**
- * Created by zhuchongkun on 16/6/4.
- * 我帮页
+ * Created by zhuchongkun on 16/6/8.
+ * 优惠券页
  */
-public class IHelpActivity extends BaseActivity implements View.OnClickListener {
-    private String TAG="IHelpActivity";
+public class CouponActivity extends BaseActivity implements View.OnClickListener{
+    private String TAG="CouponActivity";
     private Context mContext;
     private RelativeLayout rl_back;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         requestWindowFeature(Window.FEATURE_NO_TITLE);
-        setContentView(R.layout.activity_i_help);
+        setContentView(R.layout.activity_coupon);
         mContext=this;
         initView();
     }
 
     private void initView(){
-        rl_back= (RelativeLayout) findViewById(R.id.rl_i_help_back);
+        rl_back= (RelativeLayout) findViewById(R.id.rl_coupon_back);
         rl_back.setOnClickListener(this);
 
     }
@@ -35,10 +35,9 @@ public class IHelpActivity extends BaseActivity implements View.OnClickListener 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
-            case R.id.rl_i_help_back:
+            case R.id.rl_coupon_back:
                 finish();
                 break;
         }
-
     }
 }

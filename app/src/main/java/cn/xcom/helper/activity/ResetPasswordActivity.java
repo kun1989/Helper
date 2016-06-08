@@ -126,11 +126,10 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
             return;
         }
         RequestParams params=new RequestParams();
-        params.put("a","forgetpwd");
         params.put("phone",phone);
         params.put("code",verification);
         params.put("password",password);
-        HelperAsyncHttpClient.get(NetConstant.NET_HOST_PREFIX,params,new JsonHttpResponseHandler(){
+        HelperAsyncHttpClient.get(NetConstant.NET_RESET_PASSWORD,params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
