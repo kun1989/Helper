@@ -10,6 +10,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+//import com.baidu.mapapi.map.MapView;
+
+import com.baidu.mapapi.map.MapView;
 
 import cn.xcom.helper.R;
 import cn.xcom.helper.activity.HelpMeActivity;
@@ -24,6 +29,7 @@ public class MapFragment extends Fragment implements View.OnClickListener{
     private Context mContext;
     private RelativeLayout rl_location,rl_authentication_list;
     private TextView tv_I_help,tv_help_me,tv_city_interaction;
+    private MapView mMapView = null;
 
     @Nullable
     @Override
@@ -48,17 +54,36 @@ public class MapFragment extends Fragment implements View.OnClickListener{
         tv_help_me.setOnClickListener(this);
         tv_city_interaction= (TextView) getView().findViewById(R.id.tv_fragment_map_city_interaction);
         tv_city_interaction.setOnClickListener(this);
+        mMapView = (MapView) getView().findViewById(R.id.mapView_fragment_map);
 
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mMapView.onResume();
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        mMapView.onPause();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mMapView.onDestroy();
     }
 
     @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_fragment_map_location:
-
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rl_fragment_map_authentication_list:
-
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_fragment_map_I_help:
                 startActivity(new Intent(mContext, IHelpActivity.class));
@@ -67,7 +92,7 @@ public class MapFragment extends Fragment implements View.OnClickListener{
                 startActivity(new Intent(mContext, HelpMeActivity.class));
                 break;
             case R.id.tv_fragment_map_city_interaction:
-
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
         }
 

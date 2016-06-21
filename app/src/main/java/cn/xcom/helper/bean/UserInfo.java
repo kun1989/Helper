@@ -15,7 +15,7 @@ public class UserInfo implements Serializable {
     private String userPhone;// 用户手机号
     private String userCode;// 验证码
     private String userName;// 姓名
-    private String userGender;// 性别
+    private String userGender;// 性别(0=>女 1=>男)
     private String userID;//身份证
     private String userAddress;//地址
 
@@ -48,6 +48,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserId() {
+        if (userId==null){
+            return "";
+        }else if (userId.equals("null")){
+            return "";
+        }
         return userId;
     }
 
@@ -56,6 +61,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserPassword() {
+        if (userPassword==null){
+            return "";
+        }else if (userPassword.equals("null")){
+            return "";
+        }
         return userPassword;
     }
 
@@ -64,6 +74,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserCode() {
+        if (userCode==null){
+            return "";
+        }else if (userCode.equals("null")){
+            return "";
+        }
         return userCode;
     }
 
@@ -72,7 +87,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserPhone() {
-
+        if (userPhone==null){
+            return "";
+        }else if (userPhone.equals("null")){
+            return "";
+        }
         return userPhone;
     }
 
@@ -81,7 +100,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserImg() {
-
+        if (userImg==null){
+            return "";
+        }else if (userImg.equals("null")){
+            return "";
+        }
         return userImg;
     }
 
@@ -90,6 +113,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserName() {
+        if (userName==null){
+            return "";
+        }else if (userName.equals("null")){
+            return "";
+        }
         return userName;
     }
 
@@ -98,6 +126,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserGender() {
+        if (userGender==null){
+            return "";
+        }else if (userGender.equals("null")){
+            return "";
+        }
         return userGender;
     }
 
@@ -106,6 +139,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserID() {
+        if (userID==null){
+            return "";
+        }else if (userID.equals("null")){
+            return "";
+        }
         return userID;
     }
 
@@ -114,6 +152,11 @@ public class UserInfo implements Serializable {
     }
 
     public String getUserAddress() {
+        if (userAddress==null){
+            return "";
+        }else if (userAddress.equals("null")){
+            return "";
+        }
         return userAddress;
     }
 

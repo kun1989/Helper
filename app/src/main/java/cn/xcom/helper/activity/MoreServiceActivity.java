@@ -1,6 +1,9 @@
 package cn.xcom.helper.activity;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
@@ -8,6 +11,7 @@ import android.view.Window;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import cn.xcom.helper.R;
 
@@ -54,17 +58,35 @@ public class MoreServiceActivity extends BaseActivity implements View.OnClickLis
                 finish();
                 break;
             case R.id.ll_more_service_training_course:
+                startActivity(new Intent(mContext,TrainingCourseActivity.class));
                 break;
             case R.id.ll_more_service_common_problem:
+                startActivity(new Intent(mContext,CommonProblemActivity.class));
                 break;
             case R.id.ll_more_service_legal_agreement:
+                startActivity(new Intent(mContext,LegalAgreementActivity.class));
                 break;
             case R.id.ll_more_service_score:
+                toScore();
                 break;
             case R.id.ll_more_service_clear_cache:
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_more_service_exit:
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
         }
+    }
+    private void toScore(){
+        try{
+            Uri uri=Uri.parse("market://details?id="+getPackageName());
+            Intent intent =new Intent(Intent.ACTION_VIEW,uri);
+            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+            startActivity(intent);
+        }catch (ActivityNotFoundException e){
+            Toast.makeText(mContext,"未发现应用市场",Toast.LENGTH_SHORT).show();
+        }
+
+
     }
 }

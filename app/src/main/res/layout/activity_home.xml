@@ -13,7 +13,7 @@
     <LinearLayout
         android:id="@+id/ll_home_bottom"
         android:layout_width="fill_parent"
-        android:layout_height="55dp"
+        android:layout_height="50dp"
         android:layout_alignParentBottom="true"
         android:gravity="center_vertical"
         android:baselineAligned="false"
@@ -34,7 +34,7 @@
                 android:paddingBottom="2dp"
                 android:paddingTop="7dp"
                 android:text="@string/bt_home_map"
-                android:textSize="14sp"
+                android:textSize="11dp"
                 android:id="@+id/bt_home_map" />
             <TextView
                 android:id="@+id/tv_home_map_red"
@@ -62,7 +62,7 @@
                 android:onClick="onTabClicked"
                 android:paddingBottom="2dp"
                 android:paddingTop="7dp"
-                android:textSize="14sp"
+                android:textSize="11dp"
                 android:text="@string/bt_home_buy"
                 android:id="@+id/bt_home_buy" />
             <TextView
@@ -90,7 +90,7 @@
                 android:onClick="onTabClicked"
                 android:paddingBottom="2dp"
                 android:paddingTop="7dp"
-                android:textSize="14sp"
+                android:textSize="11dp"
                 android:text="@string/bt_home_sale"
                 android:id="@+id/bt_home_sale"
                 android:layout_alignParentRight="true"
@@ -120,7 +120,7 @@
                 android:onClick="onTabClicked"
                 android:paddingBottom="2dp"
                 android:paddingTop="7dp"
-                android:textSize="14sp"
+                android:textSize="11dp"
                 android:text="@string/bt_home_me"
                 android:id="@+id/bt_home_me"
                  />

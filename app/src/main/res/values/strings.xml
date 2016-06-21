@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">51帮</string>
+    <!--SplashActivity-->
+    <string name="tv_splash_into">立即体验</string>
     <!--LoginActivity-->
     <string name="tv_login_title">51帮</string>
     <string name="tv_login_areaCode">＋86</string>
@@ -34,7 +36,7 @@
     <string name="tv_reset_password_title">修改密码</string>
     <string name="tv_reset_password_country_code">+86</string>
     <string name="et_reset_password_phone_hint">请输入手机号</string>
-    <string name="tv_reset_password_verification">验证码</string>
+    <string name="tv_reset_password_verification">验证码&#160;&#160;&#160;&#160;</string>
     <string name="et_reset_password_verification_hint">请输入验证码</string>
     <string name="tv_reset_password_verification_obtain">获取验证码</string>
     <string name="tv_reset_password_password">输入密码</string>
@@ -54,6 +56,8 @@
     <string name="tv_fragment_map_city_interaction">同城互动</string>
     <!--BuyFragment-->
     <string name="tv_fragment_buy_title">抢单</string>
+    <string name="sb_fragment_buy_open">开工</string>
+    <string name="sb_fragment_buy_close">收工</string>
     <string name="bt_fragment_buy_authorized">立即认证</string>
     <!--SaleFragment-->
     <string name="tv_fragment_sale_title">特卖</string>
@@ -77,6 +81,28 @@
     <string name="tv_fragment_me_insure">我要投保</string>
     <string name="tv_fragment_me_customer_service_consulting">客服咨询</string>
     <string name="tv_fragment_me_more_service">更多服务</string>
+    <!--EditPersonalActivity-->
+    <string name="tv_edit_personal_title">我的资料</string>
+    <string name="tv_edit_personal_phone">账号</string>
+    <string name="tv_edit_personal_nickname">昵称</string>
+    <string name="tv_edit_personal_gender">性别</string>
+    <string name="tv_edit_personal_gender_man">男</string>
+    <string name="tv_edit_personal_gender_woman">女</string>
+    <string name="tv_edit_personal_update_password">修改密码</string>
+    <string name="tv_edit_personal_update_phone">修改手机</string>
+    <!--UpdatePhoneActivity-->
+    <string name="tv_update_phone_title">修改手机</string>
+    <string name="tv_update_phone_country_code">+86</string>
+    <string name="et_update_phone_hint">请输入原手机号</string>
+    <string name="tv_update_phone_verification">验证码&#160;&#160;&#160;&#160;&#160;&#160;&#160;&#160;</string>
+    <string name="et_update_phone_verification_hint">请输入验证码</string>
+    <string name="tv_update_phone_verification_obtain">获取验证码</string>
+    <string name="tv_update_phone_phone">输入手机号</string>
+    <string name="et_update_phone_phone_hint">请输入手机号</string>
+    <string name="tv_update_phone_phone_confirm">确认手机号</string>
+    <string name="et_update_phone_phone_confirm_hint">请确认手机号</string>
+    <string name="bt_update_phone_submit">完成</string>
+
     <!--HelpMeActivity-->
     <string name="tv_help_me_title">帮我</string>
     <string name="et_help_me_content_hint">各种您想找人做的事情都可以发布哦～只要您一声招呼，我就帮您办事！</string>
@@ -91,7 +117,7 @@
     <string name="tv_help_me_time_unit">按小时</string>
     <string name="tv_help_me_validity_period">有效期</string>
     <string name="et_help_me_validity_period_hint">请选择有效时间</string>
-    <string name="tv_help_me_service_charge">服务费¥26</string>
+    <string name="tv_help_me_service_charge">服务费</string>
     <string name="bt_help_me_submit">提交订单</string>
     <!--IhelpActivity-->
     <string name="tv_i_help_title">我帮</string>
@@ -110,11 +136,11 @@
     <string name="bt_payment_submit">立即支付</string>
     <!--AuthorizedActivity-->
     <string name="tv_authorized_title">身份认证</string>
-    <string name="tv_authorized_city">所在城市</string>
+    <string name="tv_authorized_city">所在城市&#160;&#160;&#160;&#160;</string>
     <string name="tv_authorized_city_hint">所在城市</string>
-    <string name="tv_authorized_name">真实姓名</string>
+    <string name="tv_authorized_name">真实姓名&#160;&#160;&#160;&#160;</string>
     <string name="et_authorized_name_hint">本人真实姓名</string>
-    <string name="tv_authorized_ID">身份证号</string>
+    <string name="tv_authorized_ID">身份证号&#160;&#160;&#160;&#160;</string>
     <string name="et_authorized_ID_hint">身份证</string>
     <string name="tv_authorized_emergency_contact_person_name">紧急联络人</string>
     <string name="et_authorized_emergency_contact_person_name_hint">紧急联络人的真实姓名</string>
@@ -133,8 +159,87 @@
     <string name="tv_skill_list_part_time_job">兼职</string>
     <string name="tv_skill_list_marriage_love">婚恋</string>
     <string name="bt_skill_list_submit">立即提交</string>
+    <!--WalletActivity-->
+    <string name="tv_wallet_title">钱包</string>
+    <string name="tv_wallet_money">账户余额（元）</string>
+    <string name="tv_wallet_month_singular_number">本月接单数</string>
+    <string name="tv_wallet_month_income">本月收入</string>
+    <string name="tv_wallet_all_singular_number">总接单数</string>
+    <string name="tv_wallet_all_income">总收入</string>
+    <string name="tv_wallet_income_records">收入记录</string>
+    <string name="tv_wallet_present_records">提现记录</string>
+    <string name="bt_wallet_present">提现</string>
+    <!--PresentRecordActivity-->
+    <string name="tv_present_record_title">提现记录</string>
+    <!--IncomeRecordsActivity-->
+    <string name="tv_income_records_title">收支记录</string>
+    <!--BindAccountActivity-->
+    <string name="tv_bind_account_title">绑定账户</string>
+    <string name="tv_bind_account_prompt">绑定支付宝账户</string>
+    <string name="tv_bind_account_account">支付宝账户</string>
+    <string name="et_bind_account_account">手机号或邮箱</string>
+    <string name="tv_bind_account_password">支付密码&#160;&#160;&#160;&#160;</string>
+    <string name="et_bind_account_password">输入支付密码</string>
+    <string name="tv_bind_account_name">真实姓名&#160;&#160;&#160;&#160;</string>
+    <string name="et_bind_account_name">输入您的姓名</string>
+    <string name="bt_bind_account_bind">绑定</string>
+    <!--WithdrawCashActivity-->
+    <string name="tv_withdraw_cash_title">提现</string>
+    <string name="tv_withdraw_cash_money">转账金额</string>
+    <string name="tv_withdraw_cash_account">转出账户</string>
+    <string name="bt_withdraw_cash_present">提现</string>
+    <!--SignActivity-->
+    <string name="tv_sign_title">我的积分</string>
+    <string name="bt_sign_sign">签到</string>
+    <!--MessageActivity-->
+    <string name="tv_message_title">消息</string>
+    <!--SystemMessageActivity-->
+    <string name="tv_system_message_title">系统消息</string>
+    <string name="bt_system_message_update">立即更新</string>
+    <!--UserMessageActivity-->
+    <string name="tv_user_message_title">消息</string>
+    <string name="tv_user_message_order">聊好就下单</string>
+    <string name="bt_user_message_order">立即下单</string>
+    <!--BillActivity-->
+    <string name="tv_bill_title">我的发单</string>
     <!--CouponActivity-->
     <string name="tv_coupon_title">我的优惠券</string>
+    <!--OrderActivity-->
+    <string name="tv_order_title">我的订单</string>
+    <!--CollectionActivity-->
+    <string name="tv_collection_title">我的收藏</string>
+    <!--ShoppingCartActivity-->
+    <string name="tv_shopping_cart_title">我的购物车</string>
+    <!--AddressListActivity-->
+    <string name="tv_address_list_title">我的地址</string>
+    <string name="bt_address_list_add">添加新收获地址</string>
+    <!--EditAddressActivity-->
+    <string name="tv_edit_address_title">编辑地址</string>
+    <string name="tv_edit_address_save">保存</string>
+    <string name="tv_edit_address_consignee">收货人</string>
+    <string name="et_edit_address_consignee">请输入收货人姓名</string>
+    <string name="tv_edit_address_phone">联系电话</string>
+    <string name="et_edit_address_phone">请输入收货人电话</string>
+    <string name="tv_edit_address_city">所在地区</string>
+    <string name="tv_edit_address_city_text">请选择收货人地区</string>
+    <string name="tv_edit_address_street">街道</string>
+    <string name="tv_edit_address_street_text">请选择收货人街道</string>
+    <string name="et_edit_address_detail">请输入详细地址</string>
+    <!--ShareActivity-->
+    <string name="tv_share_title">分享</string>
+    <string name="tv_share_content">分享邀请有红包</string>
+    <string name="bt_share">分享给好友</string>
+    <!--OrderTakingActivity-->
+    <string name="tv_order_taking_title">我的接单</string>
+    <!--InsureActivity-->
+    <string name="tv_insure_title">服务保障</string>
+    <string name="tv_insure_state_text">今日保障状态</string>
+    <string name="tv_insure_state_yes">已投保</string>
+    <string name="tv_insure_state_no">未投保</string>
+    <string name="bt_insure">1.0元／天 投保</string>
+    <!--CustomerServiceConsultingActivity-->
+    <string name="tv_customer_service_title">客服咨询</string>
+
 
     <!--MoreServiceActivity-->
     <string name="tv_more_service_title">更多服务</string>
@@ -144,6 +249,11 @@
     <string name="tv_more_service_score">去评分</string>
     <string name="tv_more_service_clear_cache">清除缓存</string>
     <string name="tv_more_service_exit">退出登录</string>
-
+    <!--TrainingCourseActivity-->
+    <string name="tv_training_course_title">培训教程</string>
+    <!--CommonProblemActivity-->
+    <string name="tv_common_problem_title">常见问题</string>
+    <!--LegalAgreementActivity-->
+    <string name="tv_legal_agreement_title">法律协议</string>
 
 </resources>

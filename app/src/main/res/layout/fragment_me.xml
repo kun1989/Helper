@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <LinearLayout
         android:orientation="vertical"
@@ -12,16 +13,17 @@
             android:layout_width="match_parent"
             android:layout_height="106dip"
             android:background="@color/colorTheme">
-            <ImageView
+
+            <cn.xcom.helper.view.CircleImageView
+                android:id="@+id/iv_fragment_me_head"
                 android:layout_width="55dip"
                 android:layout_height="55dip"
-                android:src="@mipmap/ic_me_head"
-                android:scaleType="centerInside"
                 android:layout_marginTop="31dip"
                 android:layout_marginLeft="10dip"
                 android:layout_marginBottom="20dip"
-                android:id="@+id/iv_fragment_me_head"
-                />
+                android:src="@mipmap/ic_me_head"
+                app:border_color="@color/colorTextWhite"
+                app:border_width="1dip" />
 
             <ImageView
                 android:layout_width="16dip"
@@ -211,6 +213,19 @@
             android:drawableLeft="@mipmap/ic_me_shopping_cart"
             android:paddingLeft="10dip"
             android:text="@string/tv_fragment_me_shopping_cart"
+            android:drawablePadding="10dip"
+            android:textSize="14dip"
+            />
+        <TextView
+            android:id="@+id/tv_fragment_me_address"
+            android:layout_width="match_parent"
+            android:layout_height="46dip"
+            android:layout_marginTop="1dip"
+            android:background="@color/colorTextWhite"
+            android:gravity="center_vertical"
+            android:drawableLeft="@mipmap/ic_me_address"
+            android:paddingLeft="10dip"
+            android:text="@string/tv_fragment_me_address"
             android:drawablePadding="10dip"
             android:textSize="14dip"
             />

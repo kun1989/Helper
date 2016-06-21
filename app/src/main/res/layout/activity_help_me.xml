@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dip" >
+        android:layout_height="45dip" >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="22sp"
+            android:textSize="17dp"
             android:text="@string/tv_help_me_title"
             android:textColor="@color/colorTextWhite"
             android:background="@color/colorTheme"/>
@@ -38,6 +38,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical" >
+
             <EditText
                 android:id="@+id/et_help_me_content"
                 android:layout_width="match_parent"
@@ -48,14 +49,14 @@
                 android:background="@color/colorTextWhite"/>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="46dip"
                 android:layout_marginTop="10dip"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textSize="22dp"
+                    android:textSize="15dp"
                     android:paddingLeft="10dip"
                     android:drawablePadding="10dip"
                     android:drawableLeft="@mipmap/ic_phone_blue"
@@ -67,19 +68,19 @@
                     android:layout_weight="1.0"
                     android:background="@null"
                     android:layout_marginLeft="10dip"
-                    android:textSize="22dp"
+                    android:textSize="14dp"
                     android:hint="@string/et_help_me_phone_hint"/>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="46dip"
                 android:layout_marginTop="10dip"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textSize="22dp"
+                    android:textSize="15dp"
                     android:paddingLeft="10dip"
                     android:drawablePadding="10dip"
                     android:drawableLeft="@mipmap/ic_site_location"
@@ -91,7 +92,7 @@
                     android:layout_weight="1.0"
                     android:background="@null"
                     android:layout_marginLeft="10dip"
-                    android:textSize="22dp"
+                    android:textSize="14dp"
                     android:hint="@string/et_help_me_site_location_hint"/>
                 <ImageView
                     android:id="@+id/iv_help_me_site_location"
@@ -107,13 +108,13 @@
                 android:background="@color/colorLine" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="46dip"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="60dip"
                     android:gravity="center"
-                    android:textSize="22dp"
+                    android:textSize="15dp"
                     android:paddingLeft="10dip"
                     android:drawablePadding="10dip"
                     android:drawableLeft="@mipmap/ic_service_location"
@@ -125,7 +126,7 @@
                     android:layout_weight="1.0"
                     android:background="@null"
                     android:layout_marginLeft="10dip"
-                    android:textSize="22dp"
+                    android:textSize="14dp"
                     android:hint="@string/et_help_me_service_location_hint"/>
                 <ImageView
                     android:id="@+id/iv_help_me_service_location"
@@ -137,14 +138,14 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="46dip"
                 android:layout_marginTop="10dip"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="60dip"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textSize="22dp"
+                    android:textSize="15dp"
                     android:paddingLeft="10dip"
                     android:drawablePadding="10dip"
                     android:drawableLeft="@mipmap/ic_wages"
@@ -156,7 +157,7 @@
                     android:layout_weight="1.0"
                     android:background="@null"
                     android:layout_marginLeft="10dip"
-                    android:textSize="22dp"
+                    android:textSize="14dp"
                     android:hint="@string/et_help_me_wages_hint"/>
                 <TextView
                     android:id="@+id/tv_help_me_time_unit"
@@ -164,8 +165,8 @@
                     android:layout_height="match_parent"
                     android:gravity="center"
                     android:text="@string/tv_help_me_time_unit"
-                    android:textSize="22dp"
-                    android:drawablePadding="10dip"
+                    android:textSize="15dp"
+                    android:drawablePadding="20dip"
                     android:drawableRight="@mipmap/ic_arrow_right"
                     android:paddingRight="25dip"
                     />
@@ -173,14 +174,14 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="46dip"
                 android:layout_marginTop="10dip"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
-                    android:layout_height="60dip"
+                    android:layout_height="match_parent"
                     android:gravity="center"
-                    android:textSize="22dp"
+                    android:textSize="15dp"
                     android:paddingLeft="10dip"
                     android:drawablePadding="10dip"
                     android:drawableLeft="@mipmap/ic_validity_period"
@@ -192,7 +193,7 @@
                     android:layout_weight="1.0"
                     android:background="@null"
                     android:layout_marginLeft="10dip"
-                    android:textSize="22dp"
+                    android:textSize="14dp"
                     android:hint="@string/et_help_me_validity_period_hint"/>
                 <ImageView
                     android:id="@+id/iv_help_me_validity_period"
@@ -203,17 +204,35 @@
                     android:scaleType="center"/>
 
             </LinearLayout>
-            <TextView
-                android:id="@+id/tv_help_me_service_charge"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_gravity="center"
+                android:gravity="center_horizontal"
                 android:layout_marginTop="15dip"
-                android:text="@string/tv_help_me_service_charge"/>
+                >
+                <TextView
+                    android:id="@+id/tv_help_me_service_charge_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tv_help_me_service_charge"
+                    android:textColor="@color/colorTheme"
+                    android:textSize="14dp"/>
+                <TextView
+                    android:id="@+id/tv_help_me_service_charge"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_toRightOf="@+id/tv_help_me_service_charge_text"
+                    android:text="¥26"
+                    android:textColor="@color/colorHelpMe"
+                    android:textSize="15dp"
+                    android:layout_alignTop="@+id/tv_help_me_service_charge_text"
+                    android:layout_alignParentBottom="true" />
+            </RelativeLayout>
+
             <Button
                 android:id="@+id/bt_help_me_submit"
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="43dip"
                 android:layout_marginLeft="20dip"
                 android:layout_marginRight="20dip"
                 android:layout_marginTop="15dip"
@@ -221,7 +240,7 @@
                 android:background="@drawable/bt_login_click"
                 android:text="@string/bt_help_me_submit"
                 android:textColor="@color/colorTextWhite"
-                android:textSize="22sp" />
+                android:textSize="16dp" />
         </LinearLayout>
 
     </ScrollView>

@@ -8,6 +8,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import cn.xcom.helper.R;
 
@@ -49,6 +50,7 @@ public class PaymentActivity extends BaseActivity implements View.OnClickListene
                 finish();
                 break;
             case R.id.bt_payment_submit:
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
 
         }

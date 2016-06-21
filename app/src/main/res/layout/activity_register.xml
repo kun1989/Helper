@@ -1,14 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    >
+    xmlns:app="http://schemas.android.com/tools"
+    android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dip" >
+        android:layout_height="55dip" >
 
         <TextView
             android:layout_width="match_parent"
@@ -44,24 +43,27 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" >
 
-            <com.facebook.drawee.view.SimpleDraweeView
-                android:id="@+id/iv_register_head"
-                android:layout_width="100dp"
-                android:layout_height="100dp"
-                android:layout_gravity="center_horizontal"
-                android:layout_marginTop="30dip"
-                fresco:roundedCornerRadius="50dp"
-                fresco:roundWithOverlayColor="@color/colorMainBackground"
-                fresco:roundingBorderWidth="1dp"
-                fresco:roundingBorderColor="@color/colorTextGray"
-                fresco:placeholderImage="@mipmap/ic_take_picture"
-                fresco:placeholderImageScaleType="center"/>
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="20dip" >
+
+                <cn.xcom.helper.view.CircleImageView
+                    android:id="@+id/iv_register_head"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_alignParentBottom="true"
+                    android:src="@mipmap/ic_deafult_head"
+                    app:border_color="@color/colorWhite"
+                    app:border_width="1dip" />
+            </RelativeLayout>
 
             <RadioGroup
                 android:id="@+id/radioGroup_register_gender"
                 android:layout_width="match_parent"
                 android:layout_height="50dip"
-                android:layout_marginTop="30dip"
+                android:layout_marginTop="20dip"
                 android:orientation="horizontal"
                 android:background="@color/colorTextWhite"
                 android:paddingLeft="25dip">
@@ -90,30 +92,30 @@
                 android:layout_height="1dip"
                 android:background="@color/colorLine" />
             <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="60dp"
-                android:background="@color/colorTextWhite">
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="match_parent"
-                    android:text="@string/tv_register_name"
-                    android:gravity="center_vertical"
-                    android:paddingLeft="25dip"
-                    android:textSize="18sp"/>
-                <EditText
-                    android:id="@+id/et_register_name"
-                    android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1.0"
-                    android:background="@null"
-                    android:ems="10"
-                    android:gravity="center_vertical"
-                    android:hint="@string/et_register_name_hint"
-                    android:inputType="textPersonName"
-                    android:paddingLeft="25dip"
-                    android:textSize="18sp" >
-                </EditText>
-            </LinearLayout>
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            android:background="@color/colorTextWhite">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="@string/tv_register_name"
+                android:gravity="center_vertical"
+                android:paddingLeft="25dip"
+                android:textSize="18sp"/>
+            <EditText
+                android:id="@+id/et_register_name"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1.0"
+                android:background="@null"
+                android:ems="10"
+                android:gravity="center_vertical"
+                android:hint="@string/et_register_name_hint"
+                android:inputType="textPersonName"
+                android:paddingLeft="25dip"
+                android:textSize="18sp" >
+            </EditText>
+        </LinearLayout>
 
             <View
                 android:layout_width="fill_parent"
@@ -121,7 +123,7 @@
                 android:background="@color/colorLine" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
@@ -151,7 +153,7 @@
                 android:background="@color/colorLine" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
@@ -176,7 +178,7 @@
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="55dip"
                 android:layout_marginTop="15dip"
                 android:orientation="horizontal"
                 android:background="@color/colorTextWhite">
@@ -235,7 +237,7 @@
                     android:text="@string/tv_register_verification_obtain"
                     android:textColor="@color/colorTextWhite"
                     android:textSize="13sp"
-                    android:layout_margin="15dp"
+                    android:layout_margin="10dp"
                     android:background="@drawable/bt_login_click"/>
 
             </LinearLayout>
@@ -247,7 +249,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dp"
+                android:layout_height="55dp"
                 android:background="@color/colorTextWhite">
 
                 <TextView
@@ -270,8 +272,6 @@
                     android:background="@null"
                     android:inputType="phone"
                     android:paddingLeft="25dip">
-
-                    <requestFocus />
                 </EditText>
             </LinearLayout>
 
@@ -282,10 +282,11 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="55dip"
                 android:background="@color/colorTextWhite"
                 android:gravity="center_vertical"
-                android:orientation="horizontal" >
+                android:orientation="horizontal"
+                android:layout_marginBottom="40dip">
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -317,11 +318,10 @@
             <Button
                 android:id="@+id/bt_register_submit"
                 android:layout_width="match_parent"
-                android:layout_height="60dip"
+                android:layout_height="50dip"
                 android:layout_marginLeft="20dip"
                 android:layout_marginRight="20dip"
-                android:layout_marginTop="50dip"
-                android:layout_marginBottom="20dip"
+                android:layout_marginBottom="30dip"
                 android:background="@drawable/bt_login_click"
                 android:text="@string/bt_register_submit"
                 android:textColor="@color/colorTextWhite"

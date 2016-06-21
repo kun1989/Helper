@@ -3,16 +3,17 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:orientation="vertical"
     android:layout_width="match_parent"
+    android:background="@color/colorMainBackground"
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dip" >
+        android:layout_height="45dip" >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="22sp"
+            android:textSize="20dp"
             android:text="@string/tv_fragment_map_title"
             android:textColor="@color/colorTextWhite"
             android:background="@color/colorTheme"/>
@@ -24,8 +25,8 @@
             android:gravity="center" >
 
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:contentDescription="@string/app_name"
                 android:src="@mipmap/ic_location" />
         </RelativeLayout>
@@ -39,25 +40,16 @@
             android:layout_alignParentEnd="true"
             android:gravity="center">
             <ImageView
-                android:layout_width="30dp"
-                android:layout_height="30dp"
+                android:layout_width="21dp"
+                android:layout_height="21dp"
                 android:contentDescription="@string/app_name"
                 android:src="@mipmap/ic_authentication_list" />
         </RelativeLayout>
     </RelativeLayout>
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorMainBackground"
-        android:scrollbars="none" >
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" >
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="120dip"
+                android:layout_height="100dip"
                 android:background="@color/colorTextWhite"
                 >
                 <TextView
@@ -67,7 +59,7 @@
                     android:layout_weight="1.0"
                     android:text="@string/tv_fragment_map_help_me"
                     android:gravity="center"
-                    android:drawableTop="@drawable/tv_home_help_me"
+                    android:drawableTop="@mipmap/ic_home_help_me"
                     android:drawablePadding="5dip"
                     android:padding="15dip"
                     />
@@ -79,7 +71,7 @@
                     android:layout_weight="1.0"
                     android:text="@string/tv_fragment_map_I_help"
                     android:gravity="center"
-                    android:drawableTop="@drawable/tv_home_i_help"
+                    android:drawableTop="@mipmap/ic_home_i_help"
                     android:drawablePadding="5dip"
                     android:padding="15dip"
                     />
@@ -91,13 +83,14 @@
                     android:layout_weight="1.0"
                     android:text="@string/tv_fragment_map_city_interaction"
                     android:gravity="center"
-                    android:drawableTop="@drawable/tv_home_city_interaction"
+                    android:drawableTop="@mipmap/ic_home_city_interaction"
                     android:drawablePadding="5dip"
                     android:padding="15dip"
                     />
             </LinearLayout>
-
-
+            <com.baidu.mapapi.map.MapView
+                android:id="@+id/mapView_fragment_map"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:clickable="true"/>
         </LinearLayout>
-        </ScrollView>
-    </LinearLayout>

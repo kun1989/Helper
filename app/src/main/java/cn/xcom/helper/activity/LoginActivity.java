@@ -15,10 +15,11 @@ import android.widget.Toast;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.xcom.helper.R;
-import cn.xcom.helper.constant.HelperConstant;
+import cn.xcom.helper.bean.UserInfo;
 import cn.xcom.helper.constant.NetConstant;
 import cn.xcom.helper.net.HelperAsyncHttpClient;
 import cn.xcom.helper.utils.LogUtils;
@@ -99,7 +100,29 @@ public class LoginActivity extends BaseActivity implements View.OnClickListener,
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
-                startActivity(new Intent(mContext,HomeActivity.class));
+                if (response!=null){
+                        try {
+                            String state=response.getString("status");
+                            if (state.equals("success")){
+                                JSONObject jsonObject=response.getJSONObject("data");
+                                UserInfo userInfo=new UserInfo(mContext);
+                                userInfo.setUserId(jsonObject.getString("id"));
+                                userInfo.setUserName(jsonObject.getString("name"));
+                                userInfo.setUserImg(jsonObject.getString("photo"));
+                                userInfo.setUserAddress(jsonObject.getString("address"));
+                                userInfo.setUserID(jsonObject.getString("idcard"));
+                                userInfo.setUserPhone(jsonObject.getString("phone"));
+                                userInfo.writeData(mContext);
+                                startActivity(new Intent(mContext,HomeActivity.class));
+                                finish();
+                            }if(state.equals("error")){
+                                String data=response.getString("data");
+                                Toast.makeText(mContext,data,Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                }
             }
 
             @Override

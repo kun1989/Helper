@@ -4,13 +4,13 @@
     android:layout_height="match_parent">
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="60dip" >
+        android:layout_height="46dip" >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="22sp"
+            android:textSize="17dp"
             android:text="@string/tv_more_service_title"
             android:textColor="@color/colorTextWhite"
             android:background="@color/colorTheme"/>
@@ -31,7 +31,7 @@
     <LinearLayout
         android:id="@+id/ll_more_service_training_course"
         android:layout_width="match_parent"
-        android:layout_height="60dip"
+        android:layout_height="45dip"
         android:background="@color/colorTextWhite">
         <TextView
             android:layout_width="0dip"
@@ -40,7 +40,7 @@
             android:layout_marginLeft="15dip"
             android:gravity="center_vertical"
             android:text="@string/tv_more_service_training_course"
-            android:textSize="22sp"/>
+            android:textSize="15dp"/>
         <ImageView
             android:layout_width="40dip"
             android:layout_height="match_parent"
@@ -55,7 +55,7 @@
     <LinearLayout
         android:id="@+id/ll_more_service_common_problem"
         android:layout_width="match_parent"
-        android:layout_height="60dip"
+        android:layout_height="45dip"
         android:background="@color/colorTextWhite">
         <TextView
             android:layout_width="0dip"
@@ -64,7 +64,7 @@
             android:layout_marginLeft="15dip"
             android:gravity="center_vertical"
             android:text="@string/tv_more_service_common_problem"
-            android:textSize="22sp"/>
+            android:textSize="15dp"/>
         <ImageView
             android:layout_width="40dip"
             android:layout_height="match_parent"
@@ -79,7 +79,7 @@
     <LinearLayout
         android:id="@+id/ll_more_service_legal_agreement"
         android:layout_width="match_parent"
-        android:layout_height="60dip"
+        android:layout_height="45dip"
         android:background="@color/colorTextWhite">
         <TextView
             android:layout_width="0dip"
@@ -88,7 +88,7 @@
             android:layout_marginLeft="15dip"
             android:gravity="center_vertical"
             android:text="@string/tv_more_service_legal_agreement"
-            android:textSize="22sp"/>
+            android:textSize="15dp"/>
         <ImageView
             android:layout_width="40dip"
             android:layout_height="match_parent"
@@ -103,7 +103,7 @@
     <LinearLayout
         android:id="@+id/ll_more_service_score"
         android:layout_width="match_parent"
-        android:layout_height="60dip"
+        android:layout_height="45dip"
         android:background="@color/colorTextWhite">
         <TextView
             android:layout_width="0dip"
@@ -112,7 +112,7 @@
             android:layout_marginLeft="15dip"
             android:gravity="center_vertical"
             android:text="@string/tv_more_service_score"
-            android:textSize="22sp"/>
+            android:textSize="15dp"/>
         <ImageView
             android:layout_width="40dip"
             android:layout_height="match_parent"
@@ -127,7 +127,7 @@
     <LinearLayout
         android:id="@+id/ll_more_service_clear_cache"
         android:layout_width="match_parent"
-        android:layout_height="60dip"
+        android:layout_height="45dip"
         android:background="@color/colorTextWhite">
         <TextView
             android:layout_width="0dip"
@@ -136,7 +136,7 @@
             android:layout_marginLeft="15dip"
             android:gravity="center_vertical"
             android:text="@string/tv_more_service_clear_cache"
-            android:textSize="22sp"/>
+            android:textSize="15dp"/>
         <ImageView
             android:layout_width="40dip"
             android:layout_height="match_parent"
@@ -151,10 +151,10 @@
     <TextView
         android:id="@+id/tv_more_service_exit"
         android:layout_width="match_parent"
-        android:layout_height="60dip"
+        android:layout_height="50dip"
         android:layout_marginTop="20dip"
         android:background="@color/colorTextWhite"
-        android:textSize="22dp"
+        android:textSize="14dp"
         android:textColor="@color/colorTheme"
         android:gravity="center"
         android:text="@string/tv_more_service_exit"/>

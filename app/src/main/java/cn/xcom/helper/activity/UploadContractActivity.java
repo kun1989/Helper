@@ -9,6 +9,7 @@ import android.view.Window;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import cn.xcom.helper.R;
 
@@ -50,13 +51,13 @@ public class UploadContractActivity extends BaseActivity implements View.OnClick
                 finish();
                 break;
             case R.id.iv_upload_contract_photo:
-
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.bt_upload_contract_skip:
                 startActivity(new Intent(mContext,PaymentActivity.class));
                 break;
             case R.id.bt_upload_contract_upload:
-
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
         }
 

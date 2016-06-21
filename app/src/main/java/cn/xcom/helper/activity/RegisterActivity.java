@@ -8,8 +8,6 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
-import android.graphics.drawable.BitmapDrawable;
-import android.graphics.drawable.Drawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -18,6 +16,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
+import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -29,20 +28,28 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
+import com.nostra13.universalimageloader.core.DisplayImageOptions;
+import com.nostra13.universalimageloader.core.ImageLoader;
+import com.nostra13.universalimageloader.core.assist.ImageScaleType;
+
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
+import java.io.IOException;
 
 import cn.xcom.helper.R;
+import cn.xcom.helper.bean.UserInfo;
 import cn.xcom.helper.constant.HelperConstant;
 import cn.xcom.helper.constant.NetConstant;
 import cn.xcom.helper.net.HelperAsyncHttpClient;
 import cn.xcom.helper.utils.LogUtils;
 import cn.xcom.helper.utils.RegexUtil;
+import cn.xcom.helper.view.CircleImageView;
 import cz.msebera.android.httpclient.Header;
 
 /**
@@ -52,8 +59,8 @@ import cz.msebera.android.httpclient.Header;
 public class RegisterActivity extends BaseActivity implements View.OnClickListener,RadioGroup.OnCheckedChangeListener{
     private String TAG="RegisterActivity";
     private RelativeLayout rl_back;
-    private SimpleDraweeView iv_head;
-    private String head=null;
+    private CircleImageView iv_head;
+    private int gender=1;
     private EditText et_name,et_ID,et_address,et_phone,et_verification,et_password;
     private TextView tv_getVerification;
     private ImageView iv_password;
@@ -61,13 +68,13 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private RadioGroup rg_gender;
     private RadioButton rb_male,rb_female;
     private Context mContext;
-    // 保存的文件的路径
-    private String filepath = "/sdcard/myheader";
-    private String picname = "newpic";
+    private UserInfo userInfo;
     private static final int PHOTO_REQUEST_CAMERA=1;//拍照
     private static final int PHOTO_REQUEST_ALBUM=2;//相册
     private static final int PHOTO_REQUEST_CUT=3;//剪裁
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS=4;
+    private ImageLoader imageLoader=ImageLoader.getInstance();
+    private DisplayImageOptions options;
 
 
 
@@ -82,7 +89,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private void initView(){
         rl_back= (RelativeLayout) findViewById(R.id.rl_register_back);
         rl_back.setOnClickListener(this);
-        iv_head= (SimpleDraweeView) findViewById(R.id.iv_register_head);
+        iv_head= (CircleImageView) findViewById(R.id.iv_register_head);
         iv_head.setOnClickListener(this);
         rg_gender= (RadioGroup) findViewById(R.id.radioGroup_register_gender);
         rb_male= (RadioButton) findViewById(R.id.radioButton_register_man);
@@ -94,12 +101,69 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         et_phone= (EditText) findViewById(R.id.et_register_phone);
         et_verification= (EditText) findViewById(R.id.et_register_verification);
         et_password= (EditText) findViewById(R.id.et_register_password);
+        iv_password= (ImageView) findViewById(R.id.iv_register_password);
+        iv_password.setOnClickListener(this);
         tv_getVerification= (TextView) findViewById(R.id.tv_register_verification_get);
         tv_getVerification.setOnClickListener(this);
         bt_submit= (Button) findViewById(R.id.bt_register_submit);
         bt_submit.setOnClickListener(this);
+        userInfo=new UserInfo(mContext);
+        rb_male.setChecked(true);
+        options=new DisplayImageOptions.Builder()
+                .bitmapConfig(Bitmap.Config.RGB_565)
+                .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
+                .showImageOnLoading(R.mipmap.ic_deafult_head)
+                .showImageOnFail(R.mipmap.ic_deafult_head)
+                .cacheInMemory(true)
+                .cacheOnDisc(true)
+                .considerExifParams(true).build();
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
+        displayData();
+
+    }
+    private void displayData(){
+        userInfo.readData(mContext);
+        if (!userInfo.getUserImg().equals("")){
+           imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserImg(),iv_head,options);
+        }
+        if (userInfo.getUserGender().equals("0")){
+            rb_female.setChecked(true);
+        }else   if (userInfo.getUserGender().equals("1")) {
+            rb_male.setChecked(true);
+        }
+        if (!userInfo.getUserName().equals("")){
+            et_name.setText(userInfo.getUserName());
+        }
+        if (!userInfo.getUserID().equals("")){
+            et_ID.setText(userInfo.getUserID());
+        }
+        if (!userInfo.getUserAddress().equals("")){
+            et_address.setText(userInfo.getUserAddress());
+        }
+        if (!userInfo.getUserPhone().equals("")){
+            et_phone.setText(userInfo.getUserPhone());
+        }
+
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveDate();
+    }
+
+    private void saveDate(){
+        userInfo.setUserGender(""+gender);
+        userInfo.setUserName(et_name.getText().toString().trim());
+        userInfo.setUserID(et_ID.getText().toString().trim());
+        userInfo.setUserAddress(et_address.getText().toString().trim());
+        userInfo.setUserPhone(et_phone.getText().toString().trim());
+        userInfo.writeData(mContext);
+    }
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -110,7 +174,19 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 showPickDialog();
                 break;
             case R.id.tv_register_verification_get:
-                getVerification();
+                checkPhone();
+                break;
+            case R.id.iv_register_password:
+                //记住光标开始的位置
+                int pos = et_password.getSelectionStart();
+                if(et_password.getInputType()!= (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)){//隐藏密码
+                    et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    iv_password.setImageResource(R.mipmap.ic_close_eyes);
+                }else{//显示密码
+                    et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    iv_password.setImageResource(R.mipmap.ic_open_eyes);
+                }
+                et_password.setSelection(pos);
                 break;
             case R.id.bt_register_submit:
                 toRegister();
@@ -122,8 +198,10 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     public void onCheckedChanged(RadioGroup group, int checkedId) {
         switch (group.getCheckedRadioButtonId()){
             case R.id.radioButton_register_man:
+                gender=1;
                 break;
             case R.id.radioButton_register_woman:
+                gender=0;
                 break;
         }
     }
@@ -137,7 +215,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         String state = Environment.getExternalStorageState();
                         if (state.equals(Environment.MEDIA_MOUNTED)) {
                             File path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-                            File tempFile = new File(path, "newpic.jpg");
+                            File tempFile = new File(path, "51head.jpg");
                             startPhotoZoom(Uri.fromFile(tempFile));
                         } else {
                             Toast.makeText(getApplicationContext(), "未找到存储卡，无法存储照片！", Toast.LENGTH_SHORT).show();
@@ -177,9 +255,9 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                         if(permissionCheck== PackageManager.PERMISSION_GRANTED){
                             Intent cameraIntent=new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
                             String state = Environment.getExternalStorageState();
-                            if (state.equals("")){
+                            if (state.equals(Environment.MEDIA_MOUNTED)){
                                 File path=Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-                                File file=new File(path,"helperhead.jpg");
+                                File file=new File(path,"51head.jpg");
                                 cameraIntent.putExtra(MediaStore.EXTRA_OUTPUT, Uri.fromFile(file));
                             }
                             startActivityForResult(cameraIntent,PHOTO_REQUEST_CAMERA);
@@ -264,33 +342,106 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         Bundle extras = data.getExtras();
         if (extras != null) {
             Bitmap photo = extras.getParcelable("data");
-            Drawable drawable = new BitmapDrawable(this.getResources(), photo);
-            iv_head.setImageDrawable(drawable);
-            storeImageToSDCARD(photo, picname, filepath);
+            storeImageToSDCARD(photo);
+        }else{
+
         }
     }
 
     /**
      * storeImageToSDCARD 将bitmap存放到sdcard中
      * */
-    public void storeImageToSDCARD(Bitmap colorImage, String ImageName, String path) {
-        File file = new File(path);
-        if (!file.exists()) {
-            file.mkdir();
+    public void storeImageToSDCARD(Bitmap bm) {
+        File appDir = new File(Environment.getExternalStorageDirectory(), "51helper");
+        if (!appDir.exists()) {
+            appDir.mkdir();
         }
-        File imagefile = new File(file, ImageName + ".jpg");
+        String fileName = System.currentTimeMillis() + ".jpg";
+        File file = new File(appDir, fileName);
         try {
-            imagefile.createNewFile();
-            FileOutputStream fos = new FileOutputStream(imagefile);
-            colorImage.compress(Bitmap.CompressFormat.JPEG, 100, fos);
-            head = imagefile.getPath();
+            FileOutputStream fos = new FileOutputStream(file);
+            bm.compress(Bitmap.CompressFormat.JPEG, 100, fos);
             fos.flush();
             fos.close();
-        } catch (Exception e) {
+            uploadImg(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
+    private void uploadImg(File f){
+//        http://bang.xiaocool.net/index.php?g=apps&m=index&a=uploadimg
+        RequestParams params=new RequestParams();
+        try {
+            params.put("upfile",f);
+        }catch (FileNotFoundException e){
+
+        }
+        LogUtils.e(TAG,"--statusCode->"+params.toString());
+        HelperAsyncHttpClient.post(NetConstant.NET_UPLOAD_IMG,params,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("success")){
+                            userInfo.setUserImg(response.getString("data"));
+                            imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserImg(),iv_head,options);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+responseString);
+            }
+        });
+
+
+    }
+    private void checkPhone(){
+//        http://bang.xiaocool.net/index.php?g=apps&m=index&a=checkphone&phone=18653503680
+        String phone=et_phone.getText().toString().trim();
+        if (!RegexUtil.checkMobile(phone)) {
+            Toast.makeText(mContext,"请正确输入手机号！",Toast.LENGTH_LONG).show();
+            return;
+        }
+        RequestParams params=new RequestParams();
+        params.put("phone",phone);
+        HelperAsyncHttpClient.get(NetConstant.NET_CHECK_PHONE,params,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("error")){
+                            getVerification();
+                        }else if(state.equals("success")){
+                            Toast.makeText(mContext,"手机号已被注册！",Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+responseString);
+            }
+        });
+    }
     private void getVerification(){
 //      http://bang.xiaocool.net/index.php?g=apps&m=index&a=SendMobileCode&phone=18653503680
         String phone=et_phone.getText().toString().trim();
@@ -305,6 +456,18 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("success")){
+                           JSONObject jsonObject=response.getJSONObject("data");
+                            String code=jsonObject.getString("code");
+                            LogUtils.e(TAG,"--code->"+code);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
@@ -323,19 +486,37 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         String address=et_address.getText().toString().trim();
         String password=et_password.getText().toString().trim();
         String verification=et_verification.getText().toString().trim();
+        if (userInfo.getUserImg().equals("")){
+            Toast.makeText(mContext,"请添加头像！",Toast.LENGTH_LONG).show();
+            return;
+        }
         if (!RegexUtil.IsChineseOrEnglish(name)){
             Toast.makeText(mContext,"请正确填写姓名！",Toast.LENGTH_LONG).show();
             return;
         }
         if (!RegexUtil.checkIdCard(ID)){
+            Toast.makeText(mContext,"请正确填写身份证号！",Toast.LENGTH_LONG).show();
             return;
         }
-        if (RegexUtil.checkMobile(phone)){
+        if (!RegexUtil.checkMobile(phone)){
+            Toast.makeText(mContext,"请正确输入手机号！",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (address==null||address.length()<=0){
+            Toast.makeText(mContext,"请输入地址！",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (verification==null||verification.length()<=0){
+            Toast.makeText(mContext,"请输入验证码！",Toast.LENGTH_LONG).show();
+            return;
+        }
+        if (password==null||password.length()<6){
+            Toast.makeText(mContext,"密码至少6位！",Toast.LENGTH_LONG).show();
             return;
         }
         RequestParams params=new RequestParams();
         params.put("name",name);
-//      params.put("avatar","AppRegister");
+        params.put("avatar",userInfo.getUserImg());
         params.put("phone",phone);
         params.put("ID",ID);
         params.put("address",address);
@@ -347,6 +528,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+
             }
 
             @Override

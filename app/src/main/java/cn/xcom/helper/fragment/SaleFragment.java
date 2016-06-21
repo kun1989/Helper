@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
@@ -25,8 +26,9 @@ public class SaleFragment extends Fragment implements View.OnClickListener{
     private String TAG="SaleFragment";
     private Context mContext;
     private RelativeLayout rl_classification,rl_release;
-    private XRecyclerView mRecyclerView;
-    private SaleAdapter mAdapter;
+//    private XRecyclerView mRecyclerView;
+//    private SaleAdapter mAdapter;
+
 
     @Nullable
     @Override
@@ -46,28 +48,28 @@ public class SaleFragment extends Fragment implements View.OnClickListener{
         rl_classification.setOnClickListener(this);
         rl_release= (RelativeLayout) getView().findViewById(R.id.rl_fragment_sale_release);
         rl_release.setOnClickListener(this);
-        mRecyclerView= (XRecyclerView)getView().findViewById(R.id.lv_fragment_sale);
-        LinearLayoutManager layoutManager = new LinearLayoutManager(mRecyclerView.getContext());
-        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
-        mRecyclerView.setLayoutManager(layoutManager);
-        mAdapter = new SaleAdapter();
-        mRecyclerView.setAdapter(mAdapter);
-        
-        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
-        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
-//        mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
-
-        mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
-            @Override
-            public void onRefresh() {
-
-            }
-
-            @Override
-            public void onLoadMore() {
-
-            }
-        });
+//        mRecyclerView= (XRecyclerView)getView().findViewById(R.id.lv_fragment_sale);
+//        LinearLayoutManager layoutManager = new LinearLayoutManager(mRecyclerView.getContext());
+//        layoutManager.setOrientation(LinearLayoutManager.VERTICAL);
+//        mRecyclerView.setLayoutManager(layoutManager);
+//        mAdapter = new SaleAdapter();
+//        mRecyclerView.setAdapter(mAdapter);
+//
+//        mRecyclerView.setRefreshProgressStyle(ProgressStyle.BallSpinFadeLoader);
+//        mRecyclerView.setLoadingMoreProgressStyle(ProgressStyle.BallRotate);
+////        mRecyclerView.setArrowImageView(R.drawable.iconfont_downgrey);
+//
+//        mRecyclerView.setLoadingListener(new XRecyclerView.LoadingListener() {
+//            @Override
+//            public void onRefresh() {
+//
+//            }
+//
+//            @Override
+//            public void onLoadMore() {
+//
+//            }
+//        });
 
 //        mRecyclerView.setRefreshing(true);
 
@@ -78,10 +80,10 @@ public class SaleFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_fragment_sale_classification:
-
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.rl_fragment_sale_release:
-
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
         }
 

@@ -3,6 +3,7 @@ package cn.xcom.helper.activity;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.text.InputType;
 import android.view.View;
 import android.view.Window;
 import android.widget.Button;
@@ -15,6 +16,7 @@ import android.widget.Toast;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.xcom.helper.R;
@@ -69,11 +71,31 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.tv_reset_password_verification_get:
-                getVerification();
+                checkPhone();
                 break;
             case R.id.iv_reset_password_password:
+                //记住光标开始的位置
+                int pos = et_password.getSelectionStart();
+                if(et_password.getInputType()!= (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)){//隐藏密码
+                    et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    iv_password.setImageResource(R.mipmap.ic_close_eyes);
+                }else{//显示密码
+                    et_password.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    iv_password.setImageResource(R.mipmap.ic_open_eyes);
+                }
+                et_password.setSelection(pos);
                 break;
             case R.id.iv_reset_password_password_confirm:
+                //记住光标开始的位置
+                int pos_confirm = et_password_confirm.getSelectionStart();
+                if(et_password_confirm.getInputType()!= (InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD)){//隐藏密码
+                    et_password_confirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    iv_password_confirm.setImageResource(R.mipmap.ic_close_eyes);
+                }else{//显示密码
+                    et_password_confirm.setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_VISIBLE_PASSWORD);
+                    iv_password_confirm.setImageResource(R.mipmap.ic_open_eyes);
+                }
+                et_password_confirm.setSelection(pos_confirm);
                 break;
             case R.id.bt_reset_password_submit:
                 resetPassword();
@@ -81,6 +103,41 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
 
         }
 
+    }
+    private void checkPhone(){
+//        http://bang.xiaocool.net/index.php?g=apps&m=index&a=checkphone&phone=18653503680
+        String phone=et_phone.getText().toString().trim();
+        if (!RegexUtil.checkMobile(phone)) {
+            Toast.makeText(mContext,"请正确输入手机号！",Toast.LENGTH_LONG).show();
+            return;
+        }
+        RequestParams params=new RequestParams();
+        params.put("phone",phone);
+        HelperAsyncHttpClient.get(NetConstant.NET_CHECK_PHONE,params,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("error")){
+                            Toast.makeText(mContext,"手机号未被注册！",Toast.LENGTH_LONG).show();
+                        }else if(state.equals("success")){
+                            getVerification();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
+                super.onFailure(statusCode, headers, responseString, throwable);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+responseString);
+            }
+        });
     }
     private void getVerification(){
 //      http://bang.xiaocool.net/index.php?g=apps&m=index&a=SendMobileCode&phone=18653503680
@@ -90,13 +147,24 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
             return;
         }
         RequestParams params=new RequestParams();
-        params.put("a","SendMobileCode");
         params.put("phone",phone);
-        HelperAsyncHttpClient.get(NetConstant.NET_HOST_PREFIX,params,new JsonHttpResponseHandler(){
+        HelperAsyncHttpClient.get(NetConstant.NET_GET_CODE,params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("success")){
+                            JSONObject jsonObject=response.getJSONObject("data");
+                            String code=jsonObject.getString("code");
+                            LogUtils.e(TAG,"--code->"+code);
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override
@@ -117,6 +185,10 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
             Toast.makeText(mContext,"请正确输入手机号！",Toast.LENGTH_LONG).show();
             return;
         }
+        if (verification==null||verification.length()<=0){
+            Toast.makeText(mContext,"请输入验证码！！",Toast.LENGTH_LONG).show();
+            return;
+        }
         if (password.length()<6){
             Toast.makeText(mContext,"密码至少6位！",Toast.LENGTH_LONG).show();
             return;
@@ -134,6 +206,19 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("success")){
+                            Toast.makeText(mContext,"密码修改成功！",Toast.LENGTH_LONG).show();
+                        }else if(state.equals("error")){
+                            String error=response.getString("data");
+                            Toast.makeText(mContext,error,Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override

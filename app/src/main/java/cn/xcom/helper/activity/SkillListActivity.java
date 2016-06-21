@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import cn.xcom.helper.R;
 
@@ -15,7 +16,7 @@ import cn.xcom.helper.R;
  * 技能列表页
  */
 public class SkillListActivity extends BaseActivity implements View.OnClickListener {
-    private String TAG="";
+    private String TAG="SkillListActivity";
     private Context mContext;
     private RelativeLayout rl_back;
     private Button bt_submit;
@@ -45,6 +46,7 @@ public class SkillListActivity extends BaseActivity implements View.OnClickListe
                 finish();
                 break;
             case R.id.bt_skill_list_submit:
+                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
         }
     }
