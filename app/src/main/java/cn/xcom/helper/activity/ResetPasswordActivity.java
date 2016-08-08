@@ -2,6 +2,9 @@ package cn.xcom.helper.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.text.InputType;
 import android.view.View;
@@ -38,6 +41,22 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
     private TextView tv_getVerification;
     private ImageView iv_password,iv_password_confirm;
     private Button bt_submit;
+    private int i=120;
+    private static final int CODE_ONE=5;
+    private static final int CODE_TWO=6;
+    private Handler handler=new Handler(Looper.myLooper()){
+        public void handleMessage(Message msg){
+            switch (msg.what){
+                case CODE_ONE:
+                    tv_getVerification.setText("重发("+i+")");
+                    break;
+                case CODE_TWO:
+                    tv_getVerification.setText("重新发送");
+                    tv_getVerification.setClickable(true);
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -71,6 +90,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                 finish();
                 break;
             case R.id.tv_reset_password_verification_get:
+                i=120;
                 checkPhone();
                 break;
             case R.id.iv_reset_password_password:
@@ -140,6 +160,25 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
         });
     }
     private void getVerification(){
+        tv_getVerification.setClickable(false);
+        tv_getVerification.setText("重发("+i+")");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (;i>0;i--){
+                    handler.sendEmptyMessage(CODE_ONE);
+                    if (i<0){
+                        break;
+                    }
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                handler.sendEmptyMessage(CODE_TWO);
+            }
+        }).start();
 //      http://bang.xiaocool.net/index.php?g=apps&m=index&a=SendMobileCode&phone=18653503680
         String phone=et_phone.getText().toString().trim();
         if (!RegexUtil.checkMobile(phone)) {
@@ -160,6 +199,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                             JSONObject jsonObject=response.getJSONObject("data");
                             String code=jsonObject.getString("code");
                             LogUtils.e(TAG,"--code->"+code);
+                            Toast.makeText(mContext,"发送成功，请注意接受！",Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -211,6 +251,7 @@ public class ResetPasswordActivity extends BaseActivity implements View.OnClickL
                         String state=response.getString("status");
                         if (state.equals("success")){
                             Toast.makeText(mContext,"密码修改成功！",Toast.LENGTH_LONG).show();
+                            finish();
                         }else if(state.equals("error")){
                             String error=response.getString("data");
                             Toast.makeText(mContext,error,Toast.LENGTH_LONG).show();

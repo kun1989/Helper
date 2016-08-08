@@ -6,11 +6,11 @@
 
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="55dip"
+        android:layout_height="46dip"
         android:background="@color/colorTheme"
         android:gravity="center"
         android:text="@string/tv_login_title"
-        android:textSize="20sp"
+        android:textSize="17dp"
         android:textColor="@color/colorTextWhite"/>
 
     <ScrollView
@@ -26,7 +26,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dip"
+                android:layout_height="46dip"
                 android:layout_marginTop="30dip"
                 android:orientation="horizontal"
                 android:background="@color/colorTextWhite">
@@ -34,7 +34,7 @@
                 <LinearLayout
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.5"
+                    android:layout_weight="1.4"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
@@ -44,7 +44,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dip"
                         android:text="@string/tv_login_areaCode"
-                        android:textSize="18sp" />
+                        android:textSize="15dp" />
 
                     <ImageView
                         android:id="@+id/iv_login_areaCode"
@@ -71,7 +71,8 @@
                     android:layout_weight="4"
                     android:background="@null"
                     android:inputType="phone"
-                    android:hint="@string/tv_login_phone_hint">
+                    android:hint="@string/tv_login_phone_hint"
+                    android:textSize="14dp">
                 </EditText>
 
             </LinearLayout>
@@ -84,7 +85,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dip"
+                android:layout_height="46dip"
                 android:orientation="horizontal"
                 android:background="@color/colorTextWhite">
 
@@ -100,7 +101,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="10dip"
                         android:text="@string/tv_login_password"
-                        android:textSize="18sp" />
+                        android:textSize="15dp" />
                 </LinearLayout>
 
                 <EditText
@@ -110,6 +111,7 @@
                     android:layout_weight="4"
                     android:background="@null"
                     android:inputType="textPassword"
+                    android:textSize="14dp"
                     android:hint="@string/tv_login_password_hint"/>
 
                 <ImageView
@@ -125,12 +127,12 @@
             <Button
                 android:id="@+id/bt_login_submit"
                 android:layout_width="match_parent"
-                android:layout_height="50dip"
+                android:layout_height="43dip"
                 android:layout_marginLeft="20dip"
                 android:layout_marginRight="20dip"
                 android:layout_marginTop="40dip"
                 android:text="@string/bt_login"
-                android:textSize="22sp"
+                android:textSize="16dp"
                 android:textColor="@color/colorTextWhite"
                 android:background="@drawable/bt_login_click"/>
 
@@ -143,7 +145,7 @@
                 android:layout_gravity="center"
                 android:text="@string/tv_login_forget_password"
                 android:textColor="@color/colorTheme"
-                android:textSize="14sp" />
+                android:textSize="14dp" />
 
             <RelativeLayout
                 android:layout_width="match_parent"
@@ -166,7 +168,7 @@
                     android:layout_toRightOf="@+id/tv_login_ask"
                     android:text="@string/tv_login_register"
                     android:textColor="@color/colorTheme"
-                    android:textSize="14sp" />
+                    android:textSize="14dp" />
             </RelativeLayout>
 
         </LinearLayout>

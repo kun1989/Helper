@@ -2,13 +2,15 @@ package cn.xcom.helper.bean;
 
 import android.content.Context;
 import java.io.Serializable;
+import java.util.ArrayList;
+
 import cn.xcom.helper.sp.UserSp;
 
 /**
  * Created by zhuchongkun on 16/5/27.
  */
 public class UserInfo implements Serializable {
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 2L;
     private String userId;// 用户ID
     private String userPassword;// 用户密码
     private String userImg;// 用户头像
@@ -18,6 +20,14 @@ public class UserInfo implements Serializable {
     private String userGender;// 性别(0=>女 1=>男)
     private String userID;//身份证
     private String userAddress;//地址
+    private String userCity;
+    private String userRealName;
+    private String userContactName;
+    private String userContactPhone;
+    private String userHandIDCard;
+    private String userIDCard;
+    private String userDrivingLicense;
+    private ArrayList<SkillTagInfo> userSkillTags;
 
 
     public UserInfo() {
@@ -162,5 +172,133 @@ public class UserInfo implements Serializable {
 
     public void setUserAddress(String userAddress) {
         this.userAddress = userAddress;
+    }
+
+
+    public String getUserCity() {
+        if (userCity==null){
+            return "";
+        }else if (userCity.equals("null")) {
+            return "";
+        }
+            return userCity;
+    }
+
+    public void setUserCity(String userCity) {
+        this.userCity = userCity;
+    }
+
+    public String getUserRealName() {
+        if (userRealName==null){
+            return "";
+        }else if (userRealName.equals("null")) {
+            return "";
+        }
+        return userRealName;
+    }
+
+    public void setUserRealName(String userRealName) {
+        this.userRealName = userRealName;
+    }
+
+    public String getUserContactName() {
+        if (userContactName==null){
+            return "";
+        }else if (userContactName.equals("null")) {
+            return "";
+        }
+        return userContactName;
+    }
+
+    public void setUserContactName(String userContactName) {
+        this.userContactName = userContactName;
+    }
+
+    public String getUserContactPhone() {
+        if (userContactPhone==null){
+            return "";
+        }else if (userContactPhone.equals("null")) {
+            return "";
+        }
+        return userContactPhone;
+    }
+
+    public void setUserContactPhone(String userContactPhone) {
+        this.userContactPhone = userContactPhone;
+    }
+
+    public String getUserHandIDCard() {
+        if (userHandIDCard==null){
+            return "";
+        }else if (userHandIDCard.equals("null")) {
+            return "";
+        }
+        return userHandIDCard;
+    }
+
+    public void setUserHandIDCard(String userHandIDCard) {
+        this.userHandIDCard = userHandIDCard;
+    }
+
+    public String getUserIDCard() {
+        if (userIDCard==null){
+            return "";
+        }else if (userIDCard.equals("null")) {
+            return "";
+        }
+        return userIDCard;
+    }
+
+    public void setUserIDCard(String userIDCard) {
+        this.userIDCard = userIDCard;
+    }
+
+    public String getUserDrivingLicense() {
+        if (userDrivingLicense==null){
+            return "";
+        }else if (userDrivingLicense.equals("null")) {
+            return "";
+        }
+        return userDrivingLicense;
+    }
+
+    public void setUserDrivingLicense(String userDrivingLicense) {
+        this.userDrivingLicense = userDrivingLicense;
+    }
+
+    public ArrayList<SkillTagInfo> getUserSkillTags() {
+        if (userSkillTags==null){
+            return new ArrayList<SkillTagInfo>();
+        }else if (userSkillTags.equals("null")) {
+            return new ArrayList<SkillTagInfo>();
+        }
+        return userSkillTags;
+    }
+
+    public void setUserSkillTags(ArrayList<SkillTagInfo> userSkillTags) {
+        this.userSkillTags = userSkillTags;
+    }
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "userId='" + userId + '\'' +
+                ", userPassword='" + userPassword + '\'' +
+                ", userImg='" + userImg + '\'' +
+                ", userPhone='" + userPhone + '\'' +
+                ", userCode='" + userCode + '\'' +
+                ", userName='" + userName + '\'' +
+                ", userGender='" + userGender + '\'' +
+                ", userID='" + userID + '\'' +
+                ", userAddress='" + userAddress + '\'' +
+                ", userCity='" + userCity + '\'' +
+                ", userRealName='" + userRealName + '\'' +
+                ", userContactName='" + userContactName + '\'' +
+                ", userContactPhone='" + userContactPhone + '\'' +
+                ", userHandIDCard='" + userHandIDCard + '\'' +
+                ", userIDCard='" + userIDCard + '\'' +
+                ", userDrivingLicense='" + userDrivingLicense + '\'' +
+                ", userSkillTags=" + userSkillTags +
+                '}';
     }
 }

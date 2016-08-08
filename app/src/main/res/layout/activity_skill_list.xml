@@ -30,48 +30,23 @@
                 android:src="@mipmap/ic_back_white_left" />
         </RelativeLayout>
     </RelativeLayout>
-    <ScrollView
+
+    <com.jcodecraeer.xrecyclerview.XRecyclerView
+        android:id="@+id/lv_skill_list"
+        android:layout_width="fill_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1.0"/>
+
+    <Button
+        android:id="@+id/bt_skill_list_submit"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/colorMainBackground"
-        android:scrollbars="none" >
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="20dip"
-                android:orientation="horizontal">
+        android:layout_height="43dip"
+        android:layout_marginLeft="20dip"
+        android:layout_marginRight="20dip"
+        android:layout_marginBottom="20dip"
+        android:background="@drawable/bt_login_click"
+        android:text="@string/bt_skill_list_submit"
+        android:textColor="@color/colorTextWhite"
+        android:textSize="16dp" />
 
-                <TextView
-                    android:layout_width="0dip"
-                    android:layout_weight="1.0"
-                    android:layout_height="match_parent"
-                    android:drawableLeft="@mipmap/ic_run_errands"
-                    android:text="@string/tv_skill_list_run_errands"/>
-
-                <CheckBox
-                    android:layout_width="30dip"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/checkBox"
-                     />
-            </LinearLayout>
-
-            <Button
-                android:id="@+id/bt_skill_list_submit"
-                android:layout_width="match_parent"
-                android:layout_height="43dip"
-                android:layout_marginLeft="20dip"
-                android:layout_marginRight="20dip"
-                android:layout_marginTop="50dip"
-                android:layout_marginBottom="20dip"
-                android:background="@drawable/bt_login_click"
-                android:text="@string/bt_skill_list_submit"
-                android:textColor="@color/colorTextWhite"
-                android:textSize="16dp" />
-
-        </LinearLayout>
-
-    </ScrollView>
 </LinearLayout>

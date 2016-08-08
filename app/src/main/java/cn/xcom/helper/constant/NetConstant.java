@@ -60,5 +60,29 @@ public interface NetConstant extends HelperConstant {
      * 身份认证
      */
     public final static String NET_IDENTITY_AUTHENTICATION=NET_HOST_PREFIX+"a=Authentication&";
+    /**
+     * 获取任务分类列表
+     */
+    public final static String NET_GET_TASKLIST=NET_HOST_PREFIX+"a=getTaskTypeList&";
+    /**
+     * 获取我的今天是否签到
+     */
+    public final static String NET_GET_SIGN_STATE=NET_HOST_PREFIX+"a=GetMySignLog";
+    /**
+     * 签到
+     */
+    public final static String NET_TO_SIGN=NET_HOST_PREFIX+"a=SignDay";
+    /**
+     * 获取我的钱包
+     */
+    public final static String NET_GET_WALLET=NET_HOST_PREFIX+"a=GetMyWallet";
+    /**
+     *获取我的收支记录
+     */
+    public final static String NET_GET_WALLET_LOG=NET_HOST_PREFIX+"a=GetMyWalletLog";
+    /**
+     *获取我的体现申请记录
+     */
+    public final static String NET_GET_WITHDRAW_LOG=NET_HOST_PREFIX+"a=GetMyWithdrawLog";
 
 }

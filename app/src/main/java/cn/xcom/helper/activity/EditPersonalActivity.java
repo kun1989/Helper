@@ -23,6 +23,7 @@ import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -56,8 +57,8 @@ public class EditPersonalActivity extends BaseActivity implements View.OnClickLi
     private String TAG="EditPersonalActivity";
     private Context mContext;
     private RelativeLayout rl_back;
-    private EditText et_phone,et_nickname;
-    private LinearLayout ll_update_password,ll_update_phone;
+    private TextView tv_phone,tv_nickname;
+    private LinearLayout ll_update_name, ll_update_password,ll_update_phone;
     private CircleImageView iv_head;
     private RadioGroup rg_gender;
     private RadioButton rb_male,rb_female;
@@ -84,8 +85,10 @@ public class EditPersonalActivity extends BaseActivity implements View.OnClickLi
         rl_back.setOnClickListener(this);
         iv_head= (CircleImageView) findViewById(R.id.iv_edit_personal_head);
         iv_head.setOnClickListener(this);
-        et_phone= (EditText) findViewById(R.id.et_edit_personal_phone);
-        et_nickname= (EditText) findViewById(R.id.et_edit_personal_nickname);
+        tv_phone= (TextView) findViewById(R.id.tv_edit_personal_phone);
+        tv_nickname= (TextView) findViewById(R.id.tv_edit_personal_nickname);
+        ll_update_name= (LinearLayout) findViewById(R.id.ll_edit_personal_update_name);
+        ll_update_name.setOnClickListener(this);
         ll_update_password= (LinearLayout) findViewById(R.id.ll_edit_personal_update_password);
         ll_update_password.setOnClickListener(this);
         ll_update_phone= (LinearLayout) findViewById(R.id.ll_edit_personal_update_phone);
@@ -113,8 +116,8 @@ public class EditPersonalActivity extends BaseActivity implements View.OnClickLi
             }else if (userInfo.getUserGender().equals("1")){
                 rb_male.setChecked(true);
             }
-            et_phone.setText(userInfo.getUserPhone());
-            et_nickname.setText(userInfo.getUserName());
+            tv_phone.setText(userInfo.getUserPhone());
+            tv_nickname.setText(userInfo.getUserName());
         }
 
     }
@@ -127,6 +130,9 @@ public class EditPersonalActivity extends BaseActivity implements View.OnClickLi
                 break;
             case R.id.iv_edit_personal_head:
                 showPickDialog();
+                break;
+            case R.id.ll_edit_personal_update_name:
+                startActivity(new Intent(mContext,UpdateNameActivity.class));
                 break;
             case R.id.ll_edit_personal_update_password:
                 startActivity(new Intent(mContext,ResetPasswordActivity.class));
@@ -173,12 +179,6 @@ public class EditPersonalActivity extends BaseActivity implements View.OnClickLi
                             e.printStackTrace();
                         }
                     }
-                }
-
-                @Override
-                public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                    super.onFailure(statusCode, headers, responseString, throwable);
-                    LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+responseString);
                 }
             });
         }

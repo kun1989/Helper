@@ -80,6 +80,7 @@
     <string name="tv_fragment_me_order_taking">我的接单</string>
     <string name="tv_fragment_me_insure">我要投保</string>
     <string name="tv_fragment_me_customer_service_consulting">客服咨询</string>
+    <string name="tv_fragment_me_customer_number">4000608856</string>
     <string name="tv_fragment_me_more_service">更多服务</string>
     <!--EditPersonalActivity-->
     <string name="tv_edit_personal_title">我的资料</string>
@@ -90,6 +91,9 @@
     <string name="tv_edit_personal_gender_woman">女</string>
     <string name="tv_edit_personal_update_password">修改密码</string>
     <string name="tv_edit_personal_update_phone">修改手机</string>
+    <!--UpdateNameActivity-->
+    <string name="tv_update_name_save">保存</string>
+    <string name="et_update_name">请输入昵称</string>
     <!--UpdatePhoneActivity-->
     <string name="tv_update_phone_title">修改手机</string>
     <string name="tv_update_phone_country_code">+86</string>
@@ -148,6 +152,10 @@
     <string name="et_authorized_emergency_contact_person_phone_hint">联络人手机</string>
     <string name="tv_authorized_note">＊手持身份证正面照，靠近镜头正面拍摄胸部以上,保证身份证上文字清晰可见</string>
     <string name="bt_authorized_next">下一步</string>
+    <!--SetCityActivity-->
+    <string name="tv_set_city_title">设置城市</string>
+    <string name="tv_set_city_text"></string>
+    <string name="bt_set_city">确定</string>
     <!--SkillListActivity-->
     <string name="tv_skill_list_title">技能选择</string>
     <string name="tv_skill_list_run_errands">跑腿</string>
@@ -191,6 +199,8 @@
     <!--SignActivity-->
     <string name="tv_sign_title">我的积分</string>
     <string name="bt_sign_sign">签到</string>
+    <string name="bt_sign_sign_ok">已签到</string>
+
     <!--MessageActivity-->
     <string name="tv_message_title">消息</string>
     <!--SystemMessageActivity-->

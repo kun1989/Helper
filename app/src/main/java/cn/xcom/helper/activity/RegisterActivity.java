@@ -11,6 +11,9 @@ import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.provider.MediaStore;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -75,8 +78,24 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS=4;
     private ImageLoader imageLoader=ImageLoader.getInstance();
     private DisplayImageOptions options;
+    private int i=120;
+    private static final int CODE_ONE=5;
+    private static final int CODE_TWO=6;
 
 
+    private Handler handler=new Handler(Looper.myLooper()){
+            public void handleMessage(Message msg){
+                switch (msg.what){
+                    case CODE_ONE:
+                        tv_getVerification.setText("重发("+i+")");
+                        break;
+                    case CODE_TWO:
+                        tv_getVerification.setText("重新发送");
+                        tv_getVerification.setClickable(true);
+                        break;
+                }
+            }
+    };
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -174,6 +193,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                 showPickDialog();
                 break;
             case R.id.tv_register_verification_get:
+                i=120;
                 checkPhone();
                 break;
             case R.id.iv_register_password:
@@ -444,6 +464,25 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
     }
     private void getVerification(){
 //      http://bang.xiaocool.net/index.php?g=apps&m=index&a=SendMobileCode&phone=18653503680
+        tv_getVerification.setClickable(false);
+        tv_getVerification.setText("重发("+i+")");
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                for (;i>0;i--){
+                    handler.sendEmptyMessage(CODE_ONE);
+                    if (i<0){
+                        break;
+                    }
+                        try {
+                            Thread.sleep(1000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                }
+                handler.sendEmptyMessage(CODE_TWO);
+            }
+        }).start();
         String phone=et_phone.getText().toString().trim();
         if (!RegexUtil.checkMobile(phone)) {
             Toast.makeText(mContext,"请正确输入手机号！",Toast.LENGTH_LONG).show();
@@ -463,6 +502,7 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
                            JSONObject jsonObject=response.getJSONObject("data");
                             String code=jsonObject.getString("code");
                             LogUtils.e(TAG,"--code->"+code);
+                            Toast.makeText(mContext,"发送成功，请注意接受！",Toast.LENGTH_LONG).show();
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
@@ -518,17 +558,31 @@ public class RegisterActivity extends BaseActivity implements View.OnClickListen
         params.put("name",name);
         params.put("avatar",userInfo.getUserImg());
         params.put("phone",phone);
-        params.put("ID",ID);
+        params.put("idcard",ID);
         params.put("address",address);
         params.put("password",password);
         params.put("code",verification);
         params.put("devicestate", HelperConstant.DEVICE_STATE);
+        LogUtils.e(TAG,"--params->"+params.toString());
         HelperAsyncHttpClient.get(NetConstant.NET_REGISTER,params,new JsonHttpResponseHandler(){
             @Override
             public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
                 super.onSuccess(statusCode, headers, response);
                 LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
-
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("success")){
+                            Toast.makeText(mContext,"注册成功！",Toast.LENGTH_LONG).show();
+                            finish();
+                        }else if(state.equals("error")){
+                            String error=response.getString("data");
+                            Toast.makeText(mContext,error,Toast.LENGTH_LONG).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
             }
 
             @Override

@@ -2,18 +2,18 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="55dip" >
+        android:layout_height="46dip" >
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center"
-            android:textSize="22sp"
+            android:textSize="17dp"
             android:text="@string/tv_register_title"
             android:textColor="@color/colorTextWhite"
             android:background="@color/colorTheme"/>
@@ -55,14 +55,14 @@
                     android:layout_height="100dp"
                     android:layout_alignParentBottom="true"
                     android:src="@mipmap/ic_deafult_head"
-                    app:border_color="@color/colorWhite"
+                    app:border_color="@color/colorTextWhite"
                     app:border_width="1dip" />
             </RelativeLayout>
 
             <RadioGroup
                 android:id="@+id/radioGroup_register_gender"
                 android:layout_width="match_parent"
-                android:layout_height="50dip"
+                android:layout_height="45dip"
                 android:layout_marginTop="20dip"
                 android:orientation="horizontal"
                 android:background="@color/colorTextWhite"
@@ -93,7 +93,7 @@
                 android:background="@color/colorLine" />
             <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="55dp"
+            android:layout_height="45dp"
             android:background="@color/colorTextWhite">
             <TextView
                 android:layout_width="wrap_content"
@@ -101,7 +101,7 @@
                 android:text="@string/tv_register_name"
                 android:gravity="center_vertical"
                 android:paddingLeft="25dip"
-                android:textSize="18sp"/>
+                android:textSize="15dp"/>
             <EditText
                 android:id="@+id/et_register_name"
                 android:layout_width="0dp"
@@ -113,7 +113,7 @@
                 android:hint="@string/et_register_name_hint"
                 android:inputType="textPersonName"
                 android:paddingLeft="25dip"
-                android:textSize="18sp" >
+                android:textSize="14dp" >
             </EditText>
         </LinearLayout>
 
@@ -123,7 +123,7 @@
                 android:background="@color/colorLine" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="45dp"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
@@ -131,7 +131,7 @@
                     android:text="@string/tv_register_ID"
                     android:gravity="center_vertical"
                     android:paddingLeft="25dip"
-                    android:textSize="18sp"/>
+                    android:textSize="15dp"/>
                 <EditText
                     android:id="@+id/et_register_ID"
                     android:layout_width="0dp"
@@ -143,7 +143,7 @@
                     android:hint="@string/et_register_ID_hint"
                     android:inputType="textPersonName"
                     android:paddingLeft="25dip"
-                    android:textSize="18sp" >
+                    android:textSize="14dp" >
                 </EditText>
             </LinearLayout>
 
@@ -153,7 +153,7 @@
                 android:background="@color/colorLine" />
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="46dp"
                 android:background="@color/colorTextWhite">
                 <TextView
                     android:layout_width="wrap_content"
@@ -161,7 +161,7 @@
                     android:text="@string/tv_register_address"
                     android:gravity="center_vertical"
                     android:paddingLeft="25dip"
-                    android:textSize="18sp"/>
+                    android:textSize="15dp"/>
                 <EditText
                     android:id="@+id/et_register_address"
                     android:layout_width="0dp"
@@ -173,12 +173,12 @@
                     android:hint="@string/et_register_address_hint"
                     android:inputType="textPersonName"
                     android:paddingLeft="25dip"
-                    android:textSize="18sp" >
+                    android:textSize="14dp" >
                 </EditText>
             </LinearLayout>
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dip"
+                android:layout_height="46dip"
                 android:layout_marginTop="15dip"
                 android:orientation="horizontal"
                 android:background="@color/colorTextWhite">
@@ -186,7 +186,7 @@
                 <LinearLayout
                     android:layout_width="0dip"
                     android:layout_height="match_parent"
-                    android:layout_weight="1.8"
+                    android:layout_weight="1.6"
                     android:gravity="center_vertical"
                     android:orientation="horizontal" >
 
@@ -196,7 +196,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dip"
                         android:text="@string/tv_login_areaCode"
-                        android:textSize="16sp" />
+                        android:textSize="15dp" />
 
                     <ImageView
                         android:id="@+id/iv_login_areaCode"
@@ -225,8 +225,9 @@
                     android:layout_weight="4"
                     android:background="@null"
                     android:inputType="phone"
-                    android:paddingLeft="15dip"
-                    android:hint="@string/tv_login_phone_hint">
+                    android:paddingLeft="20dip"
+                    android:hint="@string/tv_login_phone_hint"
+                    android:textSize="14dp">
                 </EditText>
                 <TextView
                     android:id="@+id/tv_register_verification_get"
@@ -236,8 +237,8 @@
                     android:gravity="center"
                     android:text="@string/tv_register_verification_obtain"
                     android:textColor="@color/colorTextWhite"
-                    android:textSize="13sp"
-                    android:layout_margin="10dp"
+                    android:textSize="12dp"
+                    android:layout_margin="6dp"
                     android:background="@drawable/bt_login_click"/>
 
             </LinearLayout>
@@ -249,7 +250,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dp"
+                android:layout_height="46dp"
                 android:background="@color/colorTextWhite">
 
                 <TextView
@@ -259,7 +260,7 @@
                     android:layout_centerVertical="true"
                     android:paddingLeft="25dip"
                     android:text="@string/tv_register_verification"
-                    android:textSize="18sp" />
+                    android:textSize="15dp" />
 
 
                 <EditText
@@ -271,6 +272,7 @@
                     android:hint="@string/tv_register_verification_hint"
                     android:background="@null"
                     android:inputType="phone"
+                    android:textSize="14dp"
                     android:paddingLeft="25dip">
                 </EditText>
             </LinearLayout>
@@ -282,7 +284,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="55dip"
+                android:layout_height="46dip"
                 android:background="@color/colorTextWhite"
                 android:gravity="center_vertical"
                 android:orientation="horizontal"
@@ -292,7 +294,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:gravity="center"
-                    android:textSize="18sp"
+                    android:textSize="15dp"
                     android:paddingLeft="25dip"
                     android:text="@string/tv_register_password"/>
 
@@ -305,6 +307,7 @@
                     android:paddingLeft="25dip"
                     android:hint="@string/tv_register_password_hint"
                     android:background="@null"
+                    android:textSize="14dp"
                     android:inputType="textPassword"/>
                 <ImageView
                     android:id="@+id/iv_register_password"
@@ -318,14 +321,14 @@
             <Button
                 android:id="@+id/bt_register_submit"
                 android:layout_width="match_parent"
-                android:layout_height="50dip"
+                android:layout_height="42dp"
                 android:layout_marginLeft="20dip"
                 android:layout_marginRight="20dip"
                 android:layout_marginBottom="30dip"
                 android:background="@drawable/bt_login_click"
                 android:text="@string/bt_register_submit"
                 android:textColor="@color/colorTextWhite"
-                android:textSize="22sp" />
+                android:textSize="16dp" />
 
         </LinearLayout>
     </ScrollView>

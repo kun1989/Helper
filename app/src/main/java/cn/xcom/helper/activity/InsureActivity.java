@@ -39,6 +39,8 @@ public class InsureActivity extends BaseActivity implements View.OnClickListener
         tv_state= (TextView) findViewById(R.id.tv_insure_state);
         bt_insure= (Button) findViewById(R.id.bt_insure);
         bt_insure.setOnClickListener(this);
+        rl_state.setBackgroundResource(R.color.colorTextGray);
+        tv_state.setText(getString(R.string.tv_insure_state_no));
 
     }
     @Override
@@ -49,9 +51,9 @@ public class InsureActivity extends BaseActivity implements View.OnClickListener
                 break;
             case R.id.bt_insure:
                 Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
-                rl_state.setBackgroundResource(R.color.colorTextGray);
+                rl_state.setBackgroundResource(R.color.colorTheme);
                 tv_state.setText(getString(R.string.tv_insure_state_yes));
-                bt_insure.setBackgroundResource(R.color.colorTextGray);
+                bt_insure.setSelected(true);
                 bt_insure.setClickable(false);
                 break;
         }

@@ -30,6 +30,15 @@
                 android:src="@mipmap/ic_back_white_left" />
         </RelativeLayout>
     </RelativeLayout>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <TextView
+            android:id="@+id/tv_legal_agreement_content"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
 
+
+    </ScrollView>
 
 </LinearLayout>

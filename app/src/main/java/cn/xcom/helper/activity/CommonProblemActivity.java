@@ -6,8 +6,10 @@ import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 
 import cn.xcom.helper.R;
+import cn.xcom.helper.utils.ToolUtil;
 
 /**
  * Created by zhuchongkun on 16/6/12.
@@ -17,6 +19,7 @@ public class CommonProblemActivity extends BaseActivity implements View.OnClickL
     private String TAG="CommonProblemActivity";
     private Context mContext;
     private RelativeLayout rl_back;
+    private TextView tv_content;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,6 +32,8 @@ public class CommonProblemActivity extends BaseActivity implements View.OnClickL
     private void initView(){
         rl_back= (RelativeLayout) findViewById(R.id.rl_common_problem_back);
         rl_back.setOnClickListener(this);
+        tv_content= (TextView) findViewById(R.id.tv_common_problem_content);
+        tv_content.setText(ToolUtil.readFromAsset(mContext, "51CommonProblem.txt"));
     }
 
     @Override

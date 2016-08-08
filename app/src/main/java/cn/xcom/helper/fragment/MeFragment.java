@@ -3,6 +3,7 @@ package cn.xcom.helper.fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.Bitmap;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -10,7 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.Switch;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -28,9 +29,7 @@ import cn.xcom.helper.activity.AddressListActivity;
 import cn.xcom.helper.activity.BillActivity;
 import cn.xcom.helper.activity.CollectionActivity;
 import cn.xcom.helper.activity.CouponActivity;
-import cn.xcom.helper.activity.CustomerServiceConsultingActivity;
 import cn.xcom.helper.activity.EditPersonalActivity;
-import cn.xcom.helper.activity.HomeActivity;
 import cn.xcom.helper.activity.InsureActivity;
 import cn.xcom.helper.activity.MessageActivity;
 import cn.xcom.helper.activity.MoreServiceActivity;
@@ -58,10 +57,11 @@ public class MeFragment extends Fragment implements View.OnClickListener{
     private ImageView iv_gender;
     private TextView tv_name,tv_phone,tv_realName,tv_wallet,tv_sign,tv_message,
             tv_bill,tv_coupon,tv_order,tv_collection,tv_shoppingCart,tv_address,tv_share,tv_orderTaking,
-            tv_insure,tv_serviceConsulting,tv_moreService;
+            tv_insure,tv_moreService;
     private ImageLoader imageLoader=ImageLoader.getInstance();
     private DisplayImageOptions options;
     private UserInfo userInfo;
+    private LinearLayout ll_serviceConsulting;
 
     @Nullable
     @Override
@@ -109,8 +109,8 @@ public class MeFragment extends Fragment implements View.OnClickListener{
         tv_orderTaking.setOnClickListener(this);
         tv_insure= (TextView) getView().findViewById(R.id.tv_fragment_me_insure);
         tv_insure.setOnClickListener(this);
-        tv_serviceConsulting= (TextView) getView().findViewById(R.id.tv_fragment_me_service_consulting);
-        tv_serviceConsulting.setOnClickListener(this);
+        ll_serviceConsulting= (LinearLayout) getView().findViewById(R.id.ll_fragment_me_service_consulting);
+        ll_serviceConsulting.setOnClickListener(this);
         tv_moreService= (TextView) getView().findViewById(R.id.tv_fragment_me_more_service);
         tv_moreService.setOnClickListener(this);
         userInfo=new UserInfo(mContext);
@@ -159,7 +159,6 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                         String state=response.getString("status");
                         if (state.equals("success")){
                             JSONObject jsonObject=response.getJSONObject("data");
-                            UserInfo userInfo=new UserInfo(mContext);
                             userInfo.setUserId(jsonObject.getString("id"));
                             userInfo.setUserName(jsonObject.getString("name"));
                             userInfo.setUserImg(jsonObject.getString("photo"));
@@ -232,8 +231,11 @@ public class MeFragment extends Fragment implements View.OnClickListener{
             case R.id.tv_fragment_me_insure:
                 startActivity(new Intent(mContext, InsureActivity.class));
                 break;
-            case R.id.tv_fragment_me_service_consulting:
-                startActivity(new Intent(mContext, CustomerServiceConsultingActivity.class));
+            case R.id.ll_fragment_me_service_consulting:
+                //用intent启动拨打电话
+                String number=getResources().getString(R.string.tv_fragment_me_customer_number);
+                Intent intent = new Intent(Intent.ACTION_CALL, Uri.parse("tel:"+number));
+                startActivity(intent);
                 break;
             case R.id.tv_fragment_me_more_service:
                 startActivity(new Intent(mContext, MoreServiceActivity.class));

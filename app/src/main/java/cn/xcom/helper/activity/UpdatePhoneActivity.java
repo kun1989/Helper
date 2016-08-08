@@ -2,6 +2,9 @@ package cn.xcom.helper.activity;
 
 import android.content.Context;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
+import android.os.Message;
 import android.support.annotation.Nullable;
 import android.view.View;
 import android.view.Window;
@@ -35,7 +38,23 @@ public class UpdatePhoneActivity extends BaseActivity implements View.OnClickLis
     private TextView tv_get_code;
     private EditText et_old_phone,et_new_phone,et_new_phone_confirm,et_code;
     private Button bt_submit;
+    private int i=120;
+    private static final int CODE_ONE=5;
+    private static final int CODE_TWO=6;
 
+    private Handler handler=new Handler(Looper.myLooper()){
+        public void handleMessage(Message msg){
+            switch (msg.what){
+                case CODE_ONE:
+                    tv_get_code.setText("重发("+i+")");
+                    break;
+                case CODE_TWO:
+                    tv_get_code.setText("重新发送");
+                    tv_get_code.setClickable(true);
+                    break;
+            }
+        }
+    };
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

@@ -3,6 +3,7 @@ package cn.xcom.helper.activity;
 import android.Manifest;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -40,6 +41,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 
 import cn.xcom.helper.R;
+import cn.xcom.helper.bean.UserInfo;
 import cn.xcom.helper.constant.NetConstant;
 import cn.xcom.helper.net.HelperAsyncHttpClient;
 import cn.xcom.helper.utils.LogUtils;
@@ -64,6 +66,8 @@ public class AuthorizedActivity extends BaseActivity implements View.OnClickList
     private static final int PHOTO_REQUEST_CUT=3;//剪裁
     private static final int MY_PERMISSIONS_REQUEST_READ_CONTACTS=4;
     private int flag=0;
+    private ProgressDialog dialog;
+    private UserInfo userInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -92,6 +96,8 @@ public class AuthorizedActivity extends BaseActivity implements View.OnClickList
         et_contact_phone= (EditText) findViewById(R.id.et_authorized_emergency_contact_person_phone);
         bt_next= (Button) findViewById(R.id.bt_authorized_next);
         bt_next.setOnClickListener(this);
+        userInfo=new UserInfo();
+        dialog=new ProgressDialog(mContext,AlertDialog.THEME_HOLO_LIGHT);
         options=new DisplayImageOptions.Builder()
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
@@ -103,13 +109,33 @@ public class AuthorizedActivity extends BaseActivity implements View.OnClickList
     }
 
     @Override
+    protected void onResume() {
+        super.onResume();
+        setData();
+    }
+
+    private void setData() {
+        userInfo.readData(mContext);
+        tv_city.setText(userInfo.getUserCity());
+        et_name.setText(userInfo.getUserRealName());
+        et_contact_name.setText(userInfo.getUserContactName());
+        et_contact_phone.setText(userInfo.getUserContactPhone());
+        et_ID.setText(userInfo.getUserID());
+        imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserHandIDCard(),iv_handheld_ID_card,options);
+        imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserIDCard(),iv_ID_card,options);
+        imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserDrivingLicense(),iv_driving_license,options);
+
+    }
+
+    @Override
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_authorized_back:
                 finish();
                 break;
             case R.id.iv_authorized_city:
-                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
+                Intent intent=new Intent(mContext,SetCityActivity.class);
+                startActivityForResult(intent,4);
                 break;
             case R.id.iv_authorized_handheld_ID_card:
                 flag=1;
@@ -267,6 +293,9 @@ public class AuthorizedActivity extends BaseActivity implements View.OnClickList
 
     private void uploadImg(File f){
 //        http://bang.xiaocool.net/index.php?g=apps&m=index&a=uploadimg
+        dialog.setMessage("正在上传。。。");
+        dialog.setProgressStyle(ProgressDialog.STYLE_SPINNER);
+        dialog.show();
         RequestParams params=new RequestParams();
         try {
             params.put("upfile",f);
@@ -285,25 +314,28 @@ public class AuthorizedActivity extends BaseActivity implements View.OnClickList
                         if (state.equals("success")){
                             LogUtils.e(TAG,"--flag->"+flag);
                             if(flag==1){
-                                imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+response.getString("data"),iv_handheld_ID_card,options);
+                                userInfo.setUserHandIDCard(response.getString("data"));
+                                imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserHandIDCard(),iv_handheld_ID_card,options);
                             }else if(flag==2){
-                                imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+response.getString("data"),iv_ID_card,options);
+                                userInfo.setUserIDCard(response.getString("data"));
+                                imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserIDCard(),iv_ID_card,options);
                             }else if(flag==3){
-                                imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+response.getString("data"),iv_driving_license,options);
+                                userInfo.setUserDrivingLicense(response.getString("data"));
+                                imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserDrivingLicense(),iv_driving_license,options);
                             }
-//                            userInfo.setUserImg(response.getString("data"));
-//                            imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserImg(),iv_head,options);
                         }
                     } catch (JSONException e) {
                         e.printStackTrace();
                     }
                 }
+                dialog.dismiss();
             }
 
             @Override
             public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
                 super.onFailure(statusCode, headers, responseString, throwable);
                 LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+responseString);
+                dialog.dismiss();
             }
         });
 
@@ -333,9 +365,26 @@ public class AuthorizedActivity extends BaseActivity implements View.OnClickList
                         getImageToView(data);
                     }
                     break;
+                case 4:
+                    if (data!=null){
+                        tv_city.setText(data.getStringExtra("city"));
+                    }
             }
         }
         super.onActivityResult(requestCode, resultCode, data);
     }
 
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveDate();
+    }
+    private void saveDate(){
+        userInfo.setUserCity(tv_city.getText().toString());
+        userInfo.setUserRealName(et_name.getText().toString());
+        userInfo.setUserContactName(et_contact_name.getText().toString());
+        userInfo.setUserContactPhone(et_contact_phone.getText().toString());
+        userInfo.setUserID(et_ID.getText().toString());
+        userInfo.writeData(mContext);
+    }
 }

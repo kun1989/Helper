@@ -11,7 +11,17 @@ import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONObject;
+
 import cn.xcom.helper.R;
+import cn.xcom.helper.bean.UserInfo;
+import cn.xcom.helper.constant.NetConstant;
+import cn.xcom.helper.net.HelperAsyncHttpClient;
+import cn.xcom.helper.utils.LogUtils;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by zhuchongkun on 16/6/12.
@@ -24,6 +34,7 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
     private TextView tv_momeny,tv_month_singular,tv_month_income,tv_all_singular,tv_all_income;
     private Button bt_present;
     private LinearLayout ll_present,ll_income;
+    private UserInfo userInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -48,7 +59,8 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
         ll_income.setOnClickListener(this);
         bt_present= (Button) findViewById(R.id.bt_wallet_present);
         bt_present.setOnClickListener(this);
-
+        userInfo=new UserInfo(mContext);
+        getWallet();
     }
 
     @Override
@@ -67,5 +79,20 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
                 startActivity(new Intent(mContext,BindAccountActivity.class));
                 break;
         }
+    }
+    private void getWallet(){
+        RequestParams requestParams=new RequestParams();
+        requestParams.put("userid",userInfo.getUserId());
+        HelperAsyncHttpClient.get(NetConstant.NET_GET_WALLET,requestParams,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if(response!=null){
+
+                }
+            }
+        });
+
     }
 }
