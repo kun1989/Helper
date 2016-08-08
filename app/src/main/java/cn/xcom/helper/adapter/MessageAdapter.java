@@ -6,9 +6,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import com.facebook.drawee.view.SimpleDraweeView;
 
 import cn.xcom.helper.R;
+import cn.xcom.helper.view.CircleImageView;
 
 /**
  * Created by zhuchongkun on 16/6/16.
@@ -32,14 +32,14 @@ public class MessageAdapter extends RecyclerView.Adapter<MessageAdapter.ViewHold
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tv_name, tv_time, tv_content;
-        private SimpleDraweeView iv_head;
+        private CircleImageView iv_head;
 
         public ViewHolder(View itemView) {
             super(itemView);
             tv_name = (TextView) itemView.findViewById(R.id.tv_item_message_name);
             tv_time = (TextView) itemView.findViewById(R.id.tv_item_message_time);
             tv_content = (TextView) itemView.findViewById(R.id.tv_item_message_content);
-            iv_head= (SimpleDraweeView) itemView.findViewById(R.id.iv_item_message_head);
+            iv_head= (CircleImageView) itemView.findViewById(R.id.iv_item_message_head);
         }
     }
 }

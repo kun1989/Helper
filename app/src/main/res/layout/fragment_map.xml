@@ -61,7 +61,7 @@
                     android:gravity="center"
                     android:drawableTop="@mipmap/ic_home_help_me"
                     android:drawablePadding="5dip"
-                    android:padding="15dip"
+                    android:padding="10dip"
                     />
 
                 <TextView
@@ -73,7 +73,7 @@
                     android:gravity="center"
                     android:drawableTop="@mipmap/ic_home_i_help"
                     android:drawablePadding="5dip"
-                    android:padding="15dip"
+                    android:padding="10dip"
                     />
 
                 <TextView
@@ -85,7 +85,7 @@
                     android:gravity="center"
                     android:drawableTop="@mipmap/ic_home_city_interaction"
                     android:drawablePadding="5dip"
-                    android:padding="15dip"
+                    android:padding="10dip"
                     />
             </LinearLayout>
             <com.baidu.mapapi.map.MapView

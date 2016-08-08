@@ -4,11 +4,8 @@ import android.app.ActivityManager;
 import android.app.Application;
 import android.content.Context;
 import android.content.pm.PackageManager;
-import android.support.multidex.MultiDex;
-
 import com.baidu.mapapi.SDKInitializer;
 import com.easemob.redpacketsdk.RedPacket;
-import com.facebook.drawee.backends.pipeline.Fresco;
 import com.hyphenate.chat.EMClient;
 import com.hyphenate.chat.EMOptions;
 import com.nostra13.universalimageloader.core.ImageLoader;
@@ -16,9 +13,6 @@ import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
 
 import org.json.JSONException;
 import org.json.JSONObject;
-
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.Iterator;
 import java.util.List;
 
@@ -46,8 +40,6 @@ public class HelperApplication  extends Application{
         super.onCreate();
         mContext = this;
         instance = this;
-        //初始化Fresco
-        Fresco.initialize(mContext);
         //初始化地图
         SDKInitializer.initialize(mContext);
         //初始化ImageLoader
@@ -67,7 +59,6 @@ public class HelperApplication  extends Application{
     @Override
     protected void attachBaseContext(Context base) {
         super.attachBaseContext(base);
-        MultiDex.install(this);
     }
     private void initChat() {
         int pid = android.os.Process.myPid();

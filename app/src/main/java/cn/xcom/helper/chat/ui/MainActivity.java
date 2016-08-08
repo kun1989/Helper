@@ -23,8 +23,6 @@ import com.hyphenate.chat.EMConversation;
 import com.hyphenate.chat.EMConversation.EMConversationType;
 import com.hyphenate.chat.EMMessage;
 import com.hyphenate.util.EMLog;
-import com.umeng.analytics.MobclickAgent;
-import com.umeng.update.UmengUpdateAgent;
 import android.annotation.SuppressLint;
 import android.annotation.TargetApi;
 import android.content.BroadcastReceiver;
@@ -116,11 +114,6 @@ public class MainActivity extends BaseActivity {
 		requestPermissions();
 
 		initView();
-
-		//umeng api
-		MobclickAgent.updateOnlineConfig(this);
-		UmengUpdateAgent.setUpdateOnlyWifi(false);
-		UmengUpdateAgent.update(this);
 
 		if (getIntent().getBooleanExtra(Constant.ACCOUNT_CONFLICT, false) && !isConflictDialogShow) {
 			showConflictDialog();

@@ -15,7 +15,6 @@
 package cn.xcom.helper.chat.ui;
 
 import android.os.Bundle;
-import com.umeng.analytics.MobclickAgent;
 
 import cn.xcom.helper.chat.easeui.ui.EaseBaseActivity;
 
@@ -29,15 +28,13 @@ public class BaseActivity extends EaseBaseActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // umeng
-        MobclickAgent.onResume(this);
+
     }
 
     @Override
     protected void onStart() {
         super.onStart();
-        // umeng
-        MobclickAgent.onPause(this);
+
     }
 
 }

@@ -1,23 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:fresco="http://schemas.android.com/apk/res-auto"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="horizontal"
     android:layout_width="match_parent"
     android:layout_height="80dip"
     android:background="@color/colorTextWhite">
-    <com.facebook.drawee.view.SimpleDraweeView
+    <cn.xcom.helper.view.CircleImageView
         android:id="@+id/iv_item_message_head"
-        android:layout_width="85dp"
-        android:layout_height="55dp"
-        android:layout_gravity="center_vertical"
-        fresco:roundedCornerRadius="50dp"
-        android:paddingLeft="15dip"
-        android:paddingRight="15dp"
-        fresco:roundWithOverlayColor="@color/colorMainBackground"
-        fresco:roundingBorderWidth="1dp"
-        fresco:roundingBorderColor="@color/colorTextGray"
-        fresco:placeholderImage="@mipmap/ic_take_picture"
-        fresco:placeholderImageScaleType="center"/>
+        android:layout_width="55dip"
+        android:layout_height="55dip"
+        android:layout_marginTop="31dip"
+        android:layout_marginLeft="10dip"
+        android:layout_marginBottom="20dip"
+        android:src="@mipmap/ic_me_head"
+        app:border_color="@color/colorTextWhite"
+        app:border_width="1dip" />
     <LinearLayout
         android:layout_width="0dip"
         android:layout_weight="1.0"
