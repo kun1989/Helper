@@ -7,12 +7,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import cn.xcom.helper.R;
 import cn.xcom.helper.adapter.IncomeRecordsAdapter;
+import cn.xcom.helper.bean.UserInfo;
+import cn.xcom.helper.constant.NetConstant;
+import cn.xcom.helper.net.HelperAsyncHttpClient;
+import cn.xcom.helper.utils.LogUtils;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by zhuchongkun on 16/6/12.
@@ -24,6 +35,7 @@ public class IncomeRecordsActivity extends BaseActivity implements View.OnClickL
     private RelativeLayout rl_back;
     private XRecyclerView mRecyclerView;
     private IncomeRecordsAdapter mAdapter;
+    private UserInfo userInfo;
 
 
     @Override
@@ -61,7 +73,33 @@ public class IncomeRecordsActivity extends BaseActivity implements View.OnClickL
         mAdapter=new IncomeRecordsAdapter();
         mRecyclerView.setAdapter(mAdapter);
         // mRecyclerView.setRefreshing(true);
+        userInfo=new UserInfo(mContext);
+        getIncomeRecordsList();
+    }
 
+    private void getIncomeRecordsList() {
+        RequestParams requestParmas=new RequestParams();
+        requestParmas.put("userid",userInfo.getUserId());
+        HelperAsyncHttpClient.get(NetConstant.NET_GET_WALLET_LOG,requestParmas,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("success")){
+
+                        }else if (state.equals("error")){
+                            String date=response.getString("data");
+                            Toast.makeText(mContext,date,Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+        });
     }
 
     @Override

@@ -101,8 +101,8 @@ public class AuthorizedActivity extends BaseActivity implements View.OnClickList
         options=new DisplayImageOptions.Builder()
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
-                .showImageOnLoading(R.mipmap.ic_deafult_head)
-                .showImageOnFail(R.mipmap.ic_deafult_head)
+                .showImageOnLoading(R.mipmap.ic_authorized_photo)
+                .showImageOnFail(R.mipmap.ic_authorized_photo)
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
                 .considerExifParams(true).build();

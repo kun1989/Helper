@@ -45,15 +45,28 @@
     <string name="et_reset_password_password_confirm_hint">请确认密码</string>
     <string name="bt_reset_password_submit">完成</string>
     <!--HomeActivity-->
-    <string name="bt_home_map">主页</string>
+    <string name="bt_home_map">服务主页</string>
     <string name="bt_home_buy">抢单</string>
     <string name="bt_home_sale">特卖</string>
     <string name="bt_home_me">我的</string>
     <!--MapFragment-->
     <string name="tv_fragment_map_title">51帮</string>
-    <string name="tv_fragment_map_I_help">我帮...</string>
-    <string name="tv_fragment_map_help_me">帮我...</string>
-    <string name="tv_fragment_map_city_interaction">同城互动</string>
+    <string name="tv_fragment_map_I_help">我帮</string>
+    <string name="tv_fragment_map_help_me">帮我</string>
+    <string name="tv_fragment_map_city_interaction">便民圈</string>
+    <!--CityPickerActivity-->
+    <string name="select_city">选择城市</string>
+    <string name="hot_city">热门城市</string>
+    <string name="located_city">定位城市</string>
+    <string name="hint_search_box">请输入城市名或拼音</string>
+    <string name="nothing_found">没有搜索结果~</string>
+    <string name="locating">正在定位…</string>
+    <string name="located_failed">定位失败</string>
+    <!--AuthenticationListActivity-->
+    <string name="tv_authentication_list">认证帮</string>
+    <string name="tv_authentication_list_select_first">全部分类</string>
+    <string name="tv_authentication_list_select_second">服务最多</string>
+    <string name="tv_authentication_list_select_third">在线</string>
     <!--BuyFragment-->
     <string name="tv_fragment_buy_title">抢单</string>
     <string name="sb_fragment_buy_open">开工</string>

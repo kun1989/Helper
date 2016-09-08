@@ -7,12 +7,23 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.view.View;
 import android.view.Window;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.jcodecraeer.xrecyclerview.ProgressStyle;
 import com.jcodecraeer.xrecyclerview.XRecyclerView;
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import cn.xcom.helper.R;
 import cn.xcom.helper.adapter.PresentRecordAdapter;
+import cn.xcom.helper.bean.UserInfo;
+import cn.xcom.helper.constant.NetConstant;
+import cn.xcom.helper.net.HelperAsyncHttpClient;
+import cn.xcom.helper.utils.LogUtils;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by zhuchongkun on 16/6/12.
@@ -24,6 +35,7 @@ public class PresentRecordActivity extends BaseActivity implements View.OnClickL
     private RelativeLayout rl_back;
     private XRecyclerView mRecyclerView;
     private PresentRecordAdapter mAdapter;
+    private UserInfo userInfo;
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -58,9 +70,38 @@ public class PresentRecordActivity extends BaseActivity implements View.OnClickL
         });
         mAdapter=new PresentRecordAdapter();
         mRecyclerView.setAdapter(mAdapter);
+        userInfo=new UserInfo(mContext);
 //        mRecyclerView.setRefreshing(true);
+        getPresentRecordList();
 
     }
+
+    private void getPresentRecordList() {
+        final RequestParams requestParams=new RequestParams();
+        requestParams.put("userid",userInfo.getUserId());
+        HelperAsyncHttpClient.get(NetConstant.NET_GET_WITHDRAW_LOG,requestParams,new JsonHttpResponseHandler(){
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                super.onSuccess(statusCode, headers, response);
+                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                if (response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("success")){
+
+                        }else if (state.equals("error")){
+                            String date=response.getString("data");
+                            Toast.makeText(mContext,date,Toast.LENGTH_SHORT).show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+            }
+        });
+    }
+
     @Override
     public void onClick(View v) {
         switch (v.getId()){
@@ -70,4 +111,6 @@ public class PresentRecordActivity extends BaseActivity implements View.OnClickL
         }
 
     }
+
+
 }

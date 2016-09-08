@@ -84,5 +84,9 @@ public interface NetConstant extends HelperConstant {
      *获取我的体现申请记录
      */
     public final static String NET_GET_WITHDRAW_LOG=NET_HOST_PREFIX+"a=GetMyWithdrawLog";
+    /**
+     * 获取认证帮列表
+     */
+    public final static String NET_GET_AUTHENTICATION_LIST=NET_HOST_PREFIX+"a=getAuthenticationUserList";
 
 }

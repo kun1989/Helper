@@ -165,6 +165,7 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                             userInfo.setUserAddress(jsonObject.getString("address"));
                             userInfo.setUserID(jsonObject.getString("idcard"));
                             userInfo.setUserPhone(jsonObject.getString("phone"));
+                            userInfo.setUserGender(jsonObject.getString("sex"));
                             userInfo.writeData(mContext);
                             displayDate();
                         }if(state.equals("error")){
@@ -175,13 +176,6 @@ public class MeFragment extends Fragment implements View.OnClickListener{
                         e.printStackTrace();
                     }
                 }
-            }
-
-            @Override
-            public void onFailure(int statusCode, Header[] headers, String responseString, Throwable throwable) {
-                super.onFailure(statusCode, headers, responseString, throwable);
-                LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+responseString);
-
             }
         });
 

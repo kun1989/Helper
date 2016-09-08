@@ -53,8 +53,23 @@ public class UserInfo implements Serializable {
         sp.clear();
     }
 
+    public void clearDataExceptPhone(Context context){
+        UserSp sp=new UserSp(context);
+        this.setUserPhone(sp.read().getUserPhone());
+        sp.clear();
+        sp.write(this);
+    }
+
+
     public static long getSerialVersionUID() {
         return serialVersionUID;
+    }
+
+    public boolean isLogined(){
+        if (this.getUserID().equals("")){
+            return false;
+        }
+            return true;
     }
 
     public String getUserId() {

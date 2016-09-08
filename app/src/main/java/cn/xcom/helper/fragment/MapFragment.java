@@ -28,6 +28,8 @@ import com.baidu.mapapi.map.MyLocationData;
 import java.util.List;
 
 import cn.xcom.helper.R;
+import cn.xcom.helper.activity.AuthenticationListActivity;
+import cn.xcom.helper.activity.CityPickerActivity;
 import cn.xcom.helper.activity.HelpMeActivity;
 import cn.xcom.helper.activity.IHelpActivity;
 
@@ -106,10 +108,10 @@ public class MapFragment extends Fragment implements View.OnClickListener{
     public void onClick(View v) {
         switch (v.getId()){
             case R.id.rl_fragment_map_location:
-                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(mContext, CityPickerActivity.class));
                 break;
             case R.id.rl_fragment_map_authentication_list:
-                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
+                startActivity(new Intent(mContext, AuthenticationListActivity.class));
                 break;
             case R.id.tv_fragment_map_I_help:
                 startActivity(new Intent(mContext, IHelpActivity.class));

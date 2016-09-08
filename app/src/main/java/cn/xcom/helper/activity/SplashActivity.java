@@ -14,6 +14,13 @@ import android.view.animation.AlphaAnimation;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.loopj.android.http.JsonHttpResponseHandler;
+import com.loopj.android.http.RequestParams;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 
@@ -21,6 +28,11 @@ import cn.xcom.helper.R;
 import cn.xcom.helper.adapter.ViewPageAdapter;
 import cn.xcom.helper.bean.AppInfo;
 import cn.xcom.helper.bean.UserInfo;
+import cn.xcom.helper.constant.NetConstant;
+import cn.xcom.helper.net.HelperAsyncHttpClient;
+import cn.xcom.helper.utils.LogUtils;
+import cn.xcom.helper.utils.RegexUtil;
+import cz.msebera.android.httpclient.Header;
 
 /**
  * Created by zhuchongkun on 16/6/17.
@@ -111,12 +123,12 @@ public class SplashActivity extends BaseActivity  implements View.OnClickListene
                     appInfo.setLastVersionCode(currentVersion);
                     appInfo.writeData(mContext);
                     userInfo = new UserInfo(mContext);
-//                  if (userInfo.isLogined()) {
-//                        LoginIn();
-//                    } else {
+                  if (userInfo.isLogined()) {
+                        LoginIn();
+                    } else {
                         startActivity(new Intent(mContext, LoginActivity.class));
                         finish();
-//                    }
+                    }
                 } catch (PackageManager.NameNotFoundException e) {
                     e.printStackTrace();
                 }
@@ -133,8 +145,49 @@ public class SplashActivity extends BaseActivity  implements View.OnClickListene
 
     }
     private void LoginIn(){
-        startActivity(new Intent(mContext,LoginActivity.class));
-        finish();
+            UserInfo userInfo=new UserInfo(mContext);
+            if (userInfo.isLogined()){
+                RequestParams params=new RequestParams();
+                params.put("phone",userInfo.getUserPhone());
+                params.put("password",userInfo.getUserPassword());
+                HelperAsyncHttpClient.get(NetConstant.NET_LOGIN,params,new JsonHttpResponseHandler(){
+                    @Override
+                    public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                        super.onSuccess(statusCode, headers, response);
+                        LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
+                        if (response!=null){
+                            try {
+                                String state=response.getString("status");
+                                if (state.equals("success")){
+                                    JSONObject jsonObject=response.getJSONObject("data");
+                                    UserInfo userInfo=new UserInfo(mContext);
+                                    userInfo.setUserId(jsonObject.getString("id"));
+                                    userInfo.setUserName(jsonObject.getString("name"));
+                                    userInfo.setUserImg(jsonObject.getString("photo"));
+                                    userInfo.setUserAddress(jsonObject.getString("address"));
+                                    userInfo.setUserID(jsonObject.getString("idcard"));
+                                    userInfo.setUserPhone(jsonObject.getString("phone"));
+                                    userInfo.setUserGender(jsonObject.getString("sex"));
+                                    userInfo.writeData(mContext);
+                                    startActivity(new Intent(mContext,HomeActivity.class));
+                                    finish();
+                                }if(state.equals("error")){
+                                    String data=response.getString("data");
+                                    Toast.makeText(mContext,data,Toast.LENGTH_LONG).show();
+                                    startActivity(new Intent(mContext,LoginActivity.class));
+                                    finish();
+                                }
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                });
+            }else{
+                startActivity(new Intent(mContext,LoginActivity.class));
+                finish();
+            }
+
     }
     private void setCurrentDat(int i) {
         if (i<0||i>pics.length-1||currentIndex==i){

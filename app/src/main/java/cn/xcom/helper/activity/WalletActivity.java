@@ -14,10 +14,12 @@ import android.widget.TextView;
 import com.loopj.android.http.JsonHttpResponseHandler;
 import com.loopj.android.http.RequestParams;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 import cn.xcom.helper.R;
 import cn.xcom.helper.bean.UserInfo;
+import cn.xcom.helper.bean.WalletInfo;
 import cn.xcom.helper.constant.NetConstant;
 import cn.xcom.helper.net.HelperAsyncHttpClient;
 import cn.xcom.helper.utils.LogUtils;
@@ -35,6 +37,7 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
     private Button bt_present;
     private LinearLayout ll_present,ll_income;
     private UserInfo userInfo;
+    private WalletInfo walletInfo;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -60,6 +63,12 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
         bt_present= (Button) findViewById(R.id.bt_wallet_present);
         bt_present.setOnClickListener(this);
         userInfo=new UserInfo(mContext);
+        walletInfo=new WalletInfo();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
         getWallet();
     }
 
@@ -89,10 +98,33 @@ public class WalletActivity extends BaseActivity implements View.OnClickListener
                 super.onSuccess(statusCode, headers, response);
                 LogUtils.e(TAG,"--statusCode->"+statusCode+"==>"+response.toString());
                 if(response!=null){
+                    try {
+                        String state=response.getString("status");
+                        if (state.equals("success")){
+                            JSONObject jsonObject=response.getJSONObject("data");
+                            walletInfo.setMomney(jsonObject.getString("money"));
+                            walletInfo.setAvailableMomney(jsonObject.getString("availablemoney"));
+                            walletInfo.setAllTasks(jsonObject.getString("alltasks"));
+                            walletInfo.setMonthTasks(jsonObject.getString("monthtasks"));
+                            walletInfo.setAllIncome(jsonObject.getString("allincome"));
+                            walletInfo.setMonthIncome(jsonObject.getString("monthincome"));
+                            displayWallet();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
 
                 }
             }
         });
 
+    }
+    private void displayWallet() {
+//        tv_momeny,tv_month_singular,tv_month_income,tv_all_singular,tv_all_income;
+        tv_momeny.setText(walletInfo.getAvailableMomney());
+        tv_all_singular.setText(walletInfo.getAllTasks());
+        tv_month_singular.setText(walletInfo.getMonthTasks());
+        tv_all_income.setText(walletInfo.getAllIncome());
+        tv_month_income.setText(walletInfo.getMonthIncome());
     }
 }

@@ -2,10 +2,12 @@ package cn.xcom.helper.activity;
 
 import android.content.ActivityNotFoundException;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.View;
 import android.view.Window;
 import android.widget.LinearLayout;
@@ -14,6 +16,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import cn.xcom.helper.R;
+import cn.xcom.helper.bean.UserInfo;
 
 /**
  * Created by zhuchongkun on 16/6/8.
@@ -73,7 +76,7 @@ public class MoreServiceActivity extends BaseActivity implements View.OnClickLis
                 Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
                 break;
             case R.id.tv_more_service_exit:
-                Toast.makeText(mContext,"未开发",Toast.LENGTH_SHORT).show();
+                toExit();
                 break;
         }
     }
@@ -86,7 +89,27 @@ public class MoreServiceActivity extends BaseActivity implements View.OnClickLis
         }catch (ActivityNotFoundException e){
             Toast.makeText(mContext,"未发现应用市场",Toast.LENGTH_SHORT).show();
         }
-
+    }
+    private void toExit(){
+        final AlertDialog.Builder builder=new AlertDialog.Builder(mContext);
+        builder.setMessage("确认退出吗？");
+        builder.setPositiveButton("确认", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+                UserInfo userInfo=new UserInfo();
+                userInfo.clearDataExceptPhone(mContext);
+                startActivity(new Intent(mContext,LoginActivity.class));
+                finish();
+            }
+        });
+        builder.setNegativeButton("取消", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+                dialog.dismiss();
+            }
+        });
+        builder.create().show();
 
     }
 }

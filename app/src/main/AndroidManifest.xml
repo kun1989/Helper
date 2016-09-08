@@ -67,6 +67,8 @@
         <activity android:name=".activity.HomeActivity"/>
         <activity android:name=".activity.ResetPasswordActivity"
                   android:windowSoftInputMode="adjustResize"/>
+        <activity android:name=".activity.CityPickerActivity"/>
+        <activity android:name=".activity.AuthenticationListActivity"/>
         <activity android:name=".activity.AuthorizedActivity"/>
         <activity android:name=".activity.SetCityActivity"/>
         <activity android:name=".activity.SkillListActivity"/>

@@ -97,7 +97,6 @@ public class EditPersonalActivity extends BaseActivity implements View.OnClickLi
         rb_male= (RadioButton) findViewById(R.id.radioButton_edit_personal_man);
         rb_female= (RadioButton) findViewById(R.id.radioButton_edit_personal_woman);
         rg_gender.setOnCheckedChangeListener(this);
-        userInfo=new UserInfo(mContext);
         options=new DisplayImageOptions.Builder()
                 .bitmapConfig(Bitmap.Config.RGB_565)
                 .imageScaleType(ImageScaleType.IN_SAMPLE_INT)
@@ -106,9 +105,16 @@ public class EditPersonalActivity extends BaseActivity implements View.OnClickLi
                 .cacheInMemory(true)
                 .cacheOnDisc(true)
                 .considerExifParams(true).build();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        userInfo=new UserInfo(mContext);
         displayDate();
     }
-     private void displayDate(){
+
+    private void displayDate(){
         if (userInfo!=null){
             imageLoader.displayImage(NetConstant.NET_DISPLAY_IMG+userInfo.getUserImg(),iv_head,options);
             if (userInfo.getUserGender().equals("0")){
@@ -152,8 +158,8 @@ public class EditPersonalActivity extends BaseActivity implements View.OnClickLi
                 updateGender();
                 break;
             case R.id.radioButton_edit_personal_woman:
-                updateGender();
                 gender=0;
+                updateGender();
                 break;
         }
     }
